@@ -1,7 +1,0 @@
-{
-  "name": "The Food Works App",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
