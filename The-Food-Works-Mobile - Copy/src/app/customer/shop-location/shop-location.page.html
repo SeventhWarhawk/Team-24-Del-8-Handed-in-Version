@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Shop Location</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" [routerLink]="['/login']" routerDirection="forward" *ngIf="!isLoggedIn">Login</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="primary" [routerLink]="['/tabs/tab3']" routerDirection="forward" *ngIf="isLoggedIn" [disabled]="!shopLocationForm.valid">{{ customerName }}</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <img class="location-image" src="../../assets/images/shop.svg"/>
+    <ion-card-header>
+      <ion-card-subtitle>Location</ion-card-subtitle>
+      <ion-card-title>Choose Shop</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="shopLocationForm">
+        <ion-item lines="none">
+          <ion-label color="tertiary">Location</ion-label>
+          <ion-select #select ok-text="Confirm" cancel-text="Cancel" formControlName="shopLocation" (ionChange)="onChange(select.value)">
+            <ion-select-option *ngFor="let location of locations" [value]="location.branchLocationID">
+              {{ location.branchLocationName }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-button type="submit" [disabled]="!shopLocationForm.valid" color="primary" [routerLink]="['/tabs']" routerDirection="forward">Begin Shopping</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+  <img class="cooking-bubbles" src="../../assets/images/cooking-bubbles.png" alt="cooking-bubbles"/>
+</ion-content>

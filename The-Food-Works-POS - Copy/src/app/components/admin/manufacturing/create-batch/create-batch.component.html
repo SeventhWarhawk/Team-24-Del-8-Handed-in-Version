@@ -1,0 +1,76 @@
+<div class="parent-container">
+  <div class="heading-wrapper">
+    <h1>Create a Batch</h1>
+  </div>
+  <div class="controls-wrapper">
+    <mat-form-field>
+      <mat-label>Search Date</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. 16/06/2020" #input>
+    </mat-form-field>
+    <button mat-stroked-button class="control" color="primary" (click)="writeBatch(cookingList.CookingListId)" *ngIf="cookingList != null">Submit</button>
+    <button mat-stroked-button class="control" color="primary" (click)="writeBatch(cookingListCreated.cookingListId)" *ngIf="cookingListCreated != null">Submit</button>
+    <button mat-stroked-button class="control" color="warn" routerLink="/admin-home">Cancel</button>
+    <span class="spacer"></span>
+    <mat-icon class="table-helper" matTooltipClass="table-helper-tooltip"
+      matTooltip="Click on table headings to sort data" matTooltipPosition="left">help_outline</mat-icon>
+  </div>
+  <div class="table-wrapper">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="productID">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Product ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.productId}} </td>
+      </ng-container>
+
+       <ng-container matColumnDef="productBarcode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Barcode </th>
+        <td mat-cell *matCellDef="let element"> {{element.productBarcode}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="productName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="qtyOrdered">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Qty Ordered </th>
+          <td mat-cell *matCellDef="let element"> {{element.quantityOrdered}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="qtyRequested">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Qty Requested – Moreletta</th>
+       <td mat-cell *matCellDef="let element"> {{element.quantityRequested}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="qtyOnHand">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Qty On Hand </th>
+       <td mat-cell *matCellDef="let element"> {{element.quantityOnHand}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="qtyStillNeeded">
+        <th mat-header-cell *matHeaderCellDef> Qty Still Needed </th>
+       <td mat-cell *matCellDef="let element"> {{element.quantitysStillNeeded}} </td>
+      </ng-container>
+
+     <ng-container matColumnDef="qtyToProduce">
+        <th mat-header-cell *matHeaderCellDef> Qty to Produce</th>
+       <td mat-cell *matCellDef="let element;let index = index"><input matInput placeholder = "Quantity" id = "quantity" [value]= "element.quantity" [(ngModel)] = "element.quantity" type="number" value = "0" > </td>
+      </ng-container>
+
+      <ng-container matColumnDef="qtyOutstanding" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Qty Outstanding</th>
+       <td mat-cell *matCellDef="let element;let index = index"> {{element.quantityOutstanding - element.quantity|| element.quantityOutstanding}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="addtoList">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+       <td mat-cell *matCellDef="let element;let index = index"> <button mat-stroked-button color="primary" (click) = "addtoBatch(element, element.quantity)">Add to Batch</button></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10]" showFirstLastButtons
+      class="mat-elevation-z8"></mat-paginator>
+    <mat-progress-bar [mode]="loadingMode" value="100"></mat-progress-bar>
+  </div>
+</div>

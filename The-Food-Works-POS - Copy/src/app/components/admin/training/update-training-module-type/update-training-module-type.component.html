@@ -1,0 +1,27 @@
+<!-- <div class="center-container">
+  <app-admin-navigation></app-admin-navigation>
+  <span class="page-title">Update Training Module Type</span>
+  <div class="admin-form-container">
+    <div class="form-content-wrapper">
+
+    </div>
+  </div>
+</div> -->
+
+<div class="modal-content">
+  <div class="modal-header">
+    <h3>Update Training Module Type</h3>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="form" class="login-content-wrapper">
+      <mat-form-field appearance="legacy">
+        <mat-label>Description</mat-label>
+        <input matInput type="text" formControlName="description">
+      </mat-form-field>
+      <br>
+      <button mat-raised-button (click)="openModal()">Update</button>
+    </form>
+  </div>
+  <br><br>
+
+</div>

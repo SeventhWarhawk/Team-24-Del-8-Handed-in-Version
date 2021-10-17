@@ -1,0 +1,65 @@
+hr {
+  color: #4db6ac;
+}
+
+mat-label {
+  color: #4db6ac;
+  margin-right: 0.5em
+}
+
+mat-form-field {
+  width: 50%;
+}
+
+input {
+  text-align: right;
+}
+
+.payment-form-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirm-modal-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  .mat-dialog-content {
+    text-align: center;
+    align-self: center;
+  }
+}
+
+.warning-message {
+  color: #D83A56;
+}
+
+.emphasis {
+  font-size: 2em;
+  font-weight: 600;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.button-wrapper {
+  margin-top: 1em;
+}
+
+mat-dialog-content {
+  width: 90%;
+  height: 38vh;
+}

@@ -1,0 +1,243 @@
+/* You can add global styles to this file, and also import other style files */
+
+// Global element styles
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #f4f9f4;
+}
+
+::selection {
+  background: #4db6ac;
+  color: white;
+}
+
+::-moz-selection {
+  background: #4db6ac;
+  color: white;
+}
+
+th {
+  background-color: #4db6ac;
+}
+
+table {
+  width: 100%;
+}
+
+::ng-deep .mat-sort-header-arrow {
+  color: #fff;
+}
+
+::ng-deep .table-helper-tooltip {
+  font-size: 15px;
+  white-space: pre-wrap;
+  color: white !important;
+  background-color: #4db6ac;
+  max-width: unset !important;
+ }
+
+::ng-deep .file-helper-tooltip {
+  font-size: 15px;
+  white-space: pre-wrap;
+  color: white !important;
+  background-color: #4db6ac;
+  max-width: unset !important;
+}
+
+mat-drawer-container {
+  height: 85vh;
+}
+
+::ng-deep snack-bar-container.error-snackbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #BD1616;
+}
+
+::ng-deep .error-snackbar .mat-simple-snackbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: whitesmoke;
+}
+
+::ng-deep snack-bar-container.success-snackbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #43e659;
+}
+
+::ng-deep .success-snackbar .mat-simple-snackbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: whitesmoke;
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+  background: linear-gradient(to left, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%) !important;
+}
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #48b6ac #d1d1d1;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 11px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #d1d1d1;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #48b6ac;
+    border-radius: 0px;
+    border: 0px none #ffffff;
+  }
+
+// Global Variables
+
+$text-color: #fff;
+
+$shadow:
+0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+0 12.5px 10px rgba(0, 0, 0, 0.06),
+0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+0 100px 80px rgba(0, 0, 0, 0.12);
+
+
+// Global class styles
+
+.highlight {
+  color: #4db6ac;
+}
+
+.parent-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: safe center;
+  align-items: safe center;
+}
+
+.heading-wrapper {
+  width: 75%;
+}
+
+.controls-wrapper {
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  .control {
+    margin-left: 1em;
+  }
+  .spacer {
+    flex: 1;
+  }
+  .table-helper {
+    color: #4db6ac;
+    font-size: 1.5em;
+    &:hover {
+    cursor: default;
+    opacity: 0.6;
+    }
+    white-space: pre-line;
+  }
+}
+
+.table-wrapper {
+  width: 75%;
+  .image-wrapper {
+    width: 50px;
+    height: 50px;
+    margin: 1em 0;
+    background-position: center;
+    background-size: cover;
+  }
+}
+
+.w-100{
+  width: 200px;
+}
+
+// Form Styling
+
+.form-heading-wrapper {
+  width: 75%;
+  align-self: flex-start;
+  margin-bottom: 3%;
+  .title-card {
+    background-color: #F3F9FB !important;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset !important;
+    width: fit-content !important;
+  }
+}
+
+.admin-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .form-content-wrapper {
+    border-bottom: none;
+  }
+}
+
+.form-content-wrapper {
+  background-color: #f3f9fb;
+  width: 75vw;
+  height: 60vh;
+  box-shadow: $shadow;
+  border-bottom: 5px solid transparent;
+  border-image-slice: 1;
+}
+
+.form-loading-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background-color: red;
+  width: 75vw;
+  height: 60vh;
+  background-color: rgb(33, 33, 33, 0.5);
+}
+
+.add-button-right{
+  background-color: rebeccapurple;
+  color: white;
+  align-content: center;
+  text-align: center;
+  left: 82%;
+  width: fit-content;
+}
+
+.table-helper {
+  color: #4db6ac;
+  font-size: 1.5em;
+  &:hover {
+  cursor: default;
+  opacity: 0.6;
+  }
+  white-space: pre-line;
+}
+

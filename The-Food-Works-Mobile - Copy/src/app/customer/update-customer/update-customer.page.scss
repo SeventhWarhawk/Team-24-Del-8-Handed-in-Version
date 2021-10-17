@@ -1,0 +1,30 @@
+input {
+  background: none;
+  border: none;
+  width: 90%;
+  margin: 1em;
+}
+input:focus {
+  background: white;
+  border: none;
+}
+
+.container {
+  height: 100%;
+}
+
+.spinner-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+  ion-button {
+    width: 60%;
+  }
+}

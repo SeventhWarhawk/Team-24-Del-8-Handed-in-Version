@@ -1,0 +1,16 @@
+<mat-toolbar>
+    <img src="../../../../assets/images/logo.png" alt="GenPoint Logo">
+    <span class="application-name-text" routerLink="/home">GenPoint</span>
+    <span class="home-toolbar-spacer"></span>
+    <mat-icon class="profile-icon">help</mat-icon>
+    <button mat-button class="menu-button" (click)="goToHelp()">Help</button>
+    <mat-icon class="profile-icon">home</mat-icon>
+    <button mat-button class="menu-button">{{branch}}</button>
+    <mat-icon class="profile-icon">account_circle</mat-icon>
+    <button mat-button [matMenuTriggerFor]="account" class="menu-button">{{getUserName()}}<mat-icon>arrow_drop_down
+        </mat-icon></button>
+    <mat-menu #account="matMenu">
+        <button mat-menu-item routerlink="reset-password" (click)="redirect()">Reset Password</button>
+        <button mat-menu-item (click)="openModal()">Logout</button>
+    </mat-menu>
+</mat-toolbar>

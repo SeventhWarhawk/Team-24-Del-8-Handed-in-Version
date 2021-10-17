@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Logged Out</ion-title>
+    <ion-buttons slot="start" >
+      <ion-back-button defaultHref="/" color="primary"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img src="../../../assets/images/not-logged-in.svg" alt="logged-out">
+  <div class="logged-out-content-wrapper">
+    <div class="logged-out-content">
+      <h1>Oops!</h1>
+      <p>Please log in before you can access this functionality.</p>
+    </div>
+  </div>
+  <ion-button [routerLink]="['/login']" routerDirection="forward">Go to Login</ion-button>
+</ion-content>

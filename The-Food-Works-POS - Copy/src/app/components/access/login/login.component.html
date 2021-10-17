@@ -1,0 +1,46 @@
+<div class="login-box-container">
+  <div class="rainbow-container"></div>
+  <div class="login-box-wrapper">
+    <div class="welcome-back-wrapper">
+      <img src="../../../../assets/images/logo.png">
+      <h1>GenPoint</h1>
+      <h5>The to the point. Point of sales system.</h5>
+    </div>
+    <div class="loading-wrapper" *ngIf="isLogging">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div class="fetching-wrapper" *ngIf="isFetching">
+      <div class="fetching-content">
+        <h4>Fetching Branches</h4>
+        <mat-progress-bar mode="buffer" color="primary"></mat-progress-bar>
+      </div>
+    </div>
+    <div class="login-content-wrapper">
+      <div class="form-wrapper">
+        <form [formGroup]="loginGroup">
+          <mat-form-field appearance="outline">
+            <mat-label>Email Address</mat-label>
+            <input type="email" matInput placeholder="Email Address" formControlName="EmailAddress">
+            <mat-error>Email address required!</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput placeholder="Password" formControlName="Password">
+            <mat-error>A password is required!</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Branch</mat-label>
+            <mat-select [(value)]="branchDropdown.BranchId" formControlName="BranchId">
+              <mat-option *ngFor="let item of selectionData" [value]="item.BranchId">
+                {{item.BranchName}}
+              </mat-option>
+            </mat-select>
+            <mat-error>Please select a branch!</mat-error>
+          </mat-form-field>
+          <button mat-stroked-button color="primary" [disabled]="!loginGroup.valid" (click)="Login()">Login</button>
+          <a routerLink="/forgot-password">Forgot Password?</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

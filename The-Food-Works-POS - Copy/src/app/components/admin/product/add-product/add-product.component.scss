@@ -1,0 +1,72 @@
+
+mat-form-field {
+  flex: 1 0 45%;
+  flex-grow: 1;
+  width: 30%;
+  margin: 1.5%;
+}
+
+.image-card {
+  text-align: center;
+  vertical-align: middle;
+  margin-left: 1.5%;
+  width: 15%;
+  margin-top: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  img {
+    object-fit: contain;
+  }
+  label {
+    margin-top: 5%;
+  }
+}
+
+.title-text {
+  font-size: 1.2em;
+  color: #6EB6AC;
+}
+
+.table-container-product {
+  margin-top: 4%;
+  margin-left: 1.4%;
+}
+
+.mat-select {
+  max-height: 100px;
+  overflow: auto;
+}
+
+.button-row {
+  margin: 1.4%;
+  button {
+    width: 10%;
+  }
+}
+
+form{
+  padding:20px;
+}
+
+
+.form-content-wrapper {
+  overflow: auto;
+}
+
+
+// Defaults
+
+mat-progress-bar {
+  width: 75vw;
+}
+
+:host ::ng-deep .mat-progress-bar-fill::after {
+  background: linear-gradient(to left, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%) !important;
+}
+
+// Disable Header Navigation
+::ng-deep .mat-horizontal-stepper-header {
+  pointer-events: none !important;
+}

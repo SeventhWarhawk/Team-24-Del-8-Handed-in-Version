@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Member Information</ion-title>
+    <ion-buttons (click)="dismissModal(true)" slot="end">
+      <ion-fab-button color="danger" size="small">
+        <ion-icon name="chevron-down-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="customer">
+    <div class="member-information-container">
+      <ion-fab vertical="top" horizontal="center" slot="fixed">
+        <ion-fab-button>
+          <ion-icon name="newspaper"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+      <div class="member-content" *ngFor="let item of customer">
+        <h5>General</h5>
+        <h4>Loyalty Registration Date</h4>
+        <h3>{{item.registrationDate | date: 'longDate'}}</h3>
+        <ion-item-divider></ion-item-divider>
+        <h4>Voucher Details Sent to</h4>
+        <h3>{{item.contactNumber}}</h3>
+        <h5>And</h5>
+        <h3>{{item.contactEmail}}</h3>
+        <ion-button class="edit" [routerLink]="['/update-customer']" (click)="dismissModal(true)">Edit</ion-button>
+        <ion-item-divider></ion-item-divider>
+        <h5>Redemption Details</h5>
+        <h4>Customer Date of Birth</h4>
+        <h3>{{item.dateOfBirth | date: 'longDate'}}</h3>
+        <ion-item-divider></ion-item-divider>
+        <h4>Customer Loyalty Month</h4>
+        <h3>{{item.dateOfBirth | date: 'MMMM'}}</h3>
+        <ion-item-divider></ion-item-divider>
+        <ion-button color="danger" class="unsubscribe" (click)="unsubscribe()">Unsubscribe</ion-button>
+      </div>
+    </div>
+  </ng-container>
+</ion-content>

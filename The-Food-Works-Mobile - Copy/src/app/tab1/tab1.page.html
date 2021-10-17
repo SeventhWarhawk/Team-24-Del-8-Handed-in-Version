@@ -1,0 +1,161 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Browse
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" color="primary"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end" [routerLink]="['/cart']" routerDirection="forward">
+      <ion-fab-button size="small">
+        <ion-icon name="cart-outline" class="cart-button"></ion-icon>
+      </ion-fab-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-searchbar inputmode="search" [(ngModel)]="filterTerm"></ion-searchbar>
+  <div class="filter-chips">
+    <ion-chip outline color="primary" (click)="filter('all')">
+      <ion-label>All</ion-label>
+    </ion-chip>
+    <ion-chip outline color="primary" (click)="filter(1)">
+      <ion-icon name="pizza-outline"></ion-icon>
+      <ion-label>Mains</ion-label>
+    </ion-chip>
+    <ion-chip outline color="primary" (click)="filter(5)">
+      <ion-icon name="beer-outline"></ion-icon>
+      <ion-label>Sides</ion-label>
+    </ion-chip>
+    <ion-chip outline color="primary" (click)="filter(4)">
+      <ion-icon name="ice-cream-outline"></ion-icon>
+      <ion-label>Desserts</ion-label>
+    </ion-chip>
+  </div>
+  <ion-list id="data" *ngIf="!isFetching">
+    <ion-item *ngFor="let product of filterProducts | filter:filterTerm" detail="true" (click)="onClick(product.productID)">
+      <ion-thumbnail slot="start">
+        <ng-container *ngIf="product.productImage !== null; else elseTemplate">
+          <ion-img [src]="product.productImage"></ion-img>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <ion-img [src]="'../../assets/images/the-food-works-logo.png'"></ion-img>
+        </ng-template>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{ product.productName }}</h3>
+        <p>{{ product.productPrice | currency:'R ' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Skeleton screen -->
+  <ion-list *ngIf="isFetching">
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+

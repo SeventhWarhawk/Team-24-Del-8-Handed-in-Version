@@ -1,0 +1,80 @@
+// Dashboard Styling
+mat-grid-tile {
+  background: white;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+// Welcome Message
+.welcome-message {
+  margin-left: 5%;
+  margin-top: 4%;
+  h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 50px;
+    span {
+      color: #4DB6AC;
+    }
+  }
+  h3 {
+    font-size: 23px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  h2 {
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    span {
+      margin-left: 0.3%;
+    }
+    mat-icon {
+      position: relative;
+      top: 5px;
+    }
+  }
+}
+
+// Facebook Styling
+.facebook-container {
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;
+  height: 95%;
+  width: 95%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.selector {
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.line-chart-wrapper {
+  height: 100%;
+  width: 90%;
+}
+
+.doughnut-chart-wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.img-wrapper {
+  height: 20vh;
+  width: 20vw;
+}
+
+.recent-activity-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.recent-activity-wrapper {
+  height: 60%;
+  overflow: auto;
+  padding-right: 1.5em;
+}

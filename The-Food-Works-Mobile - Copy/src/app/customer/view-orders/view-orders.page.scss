@@ -1,0 +1,28 @@
+ion-thumbnail {
+  margin: 0.5em 0 0.5em 0.7em;
+}
+
+ion-img {
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.spinner-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.order-content-wrapper {
+  display: flex;
+  overflow-x: auto;
+}
+
+.order-info-container {
+  display: flex;
+}
+
+.date-wrapper {
+  margin-left: 1em;
+}

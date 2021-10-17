@@ -1,0 +1,26 @@
+ion-content {
+  text-align: center;
+}
+
+img {
+  width: 80vw;
+  margin-bottom: 2em;
+  margin-top: 4em;
+}
+
+.logged-out-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+
+.logged-out-content {
+  width: 90vw;
+  background-color: #eb445a;
+  padding: 0.5em 1.5em;
+  border-radius: 20px;
+  color: white;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+}

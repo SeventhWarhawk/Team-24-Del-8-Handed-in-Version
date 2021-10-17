@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "The Food Works App",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

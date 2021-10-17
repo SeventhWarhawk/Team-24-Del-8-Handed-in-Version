@@ -1,0 +1,27 @@
+<ng-container *ngIf="delivery">
+  <h1 mat-dialog-title>Delivery ID: <span class="text-highlight">{{ delivery.deliveryID}}</span></h1>
+  <hr>
+  <div mat-dialog-content>
+    <mat-grid-list cols="2" rowHeight="4:1">
+      <mat-grid-tile>Sale ID:</mat-grid-tile>
+      <mat-grid-tile>{{ delivery.saleID }}</mat-grid-tile>
+      <mat-grid-tile>Customer Name:</mat-grid-tile>
+      <mat-grid-tile>{{ delivery.customerFullName }}</mat-grid-tile>
+      <mat-grid-tile>Customer Telephone:</mat-grid-tile>
+      <mat-grid-tile>{{ delivery.customerTelephone }}</mat-grid-tile>
+      <mat-grid-tile>Customer Signature:</mat-grid-tile>
+      <mat-grid-tile>
+        <ng-container *ngIf="delivery.customerSignature; else elseTemplate">
+          <img src='{{ delivery.customerSignature }}' />
+        </ng-container>
+        <ng-template #elseTemplate>
+          Not delivered yet
+        </ng-template>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <hr>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+  </div>
+</ng-container>

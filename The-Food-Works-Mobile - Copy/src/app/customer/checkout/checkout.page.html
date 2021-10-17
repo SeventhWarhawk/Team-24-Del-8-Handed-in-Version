@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Checkout</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="checkout-content-container">
+    <form [formGroup]="checkoutForm">
+      <ion-item lines="none">
+        <ion-label>Completion Method</ion-label>
+        <ion-select ok-text="Confirm" cancel-text="Cancel" formControlName="completionMethod"
+          (ionChange)="onCompSelect($event)">
+          <ion-select-option value="2">Collection</ion-select-option>
+          <ion-select-option value="1" [disabled]="deliveryDisable">Delivery + <span class="highlight">R30 fee</span></ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Payment Method</ion-label>
+        <ion-select ok-text="Confirm" cancel-text="Cancel" formControlName="paymentMethod"
+          (ionChange)="onPaySelect($event)">
+          <ion-select-option value="2">Online</ion-select-option>
+          <ion-select-option value="1" [disabled]="payStoreDisable">In-Store</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </form>
+    <a (click)="presentVoucherModal()" [ngClass]="{'disabled-voucher': !isVoucherApplicable}">Redeem Voucher</a>
+    <p class="voucher-message" *ngIf="voucherMessage">Vouchers are only redeemable on online orders over R20.00</p>
+    <div class="checkout-content-wrapper">
+      <div class="checkout-list-wrapper">
+        <ion-list lines="full">
+          <ion-item *ngFor="let item of cartItems">
+            <ion-label>
+              <h2>{{ item.productName }}</h2>
+              <p>Quantity: {{ item.quantity }}</p>
+              <h3>{{ item.productPrice * item.quantity | currency:'R ' }}</h3>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+      <div class="sale-final-wrapper">
+        <div class="voucher-wrapper">
+          <ion-icon name="close-circle" color="danger" *ngIf="voucherFlag" (click)="removeVoucher()"></ion-icon>
+          <div class="voucher-text-wrapper" *ngIf="voucherFlag">
+            <h4>{{voucherCode}} |<span> {{voucherAmount | currency: 'R '}}</span></h4>
+            <p>Remaining: {{voucherRemaining | currency: 'R '}}</p>
+          </div>
+        </div>
+        <div class="total-info-container">
+          <div class="total-info-wrapper">
+            <h6>VAT: {{ vatAmount | currency:'R ' }}</h6>
+            <h6>|</h6>
+            <h6>Total (incl. VAT): {{ checkoutTotal | currency:'R ' }}</h6>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <ion-button type="submit" [disabled]="!checkoutForm.valid" color="success" (click)="presentAlertConfirm()" [hidden]="isPay">Complete</ion-button>
+    <ion-button type="submit" id="checkout-button" [disabled]="!checkoutForm.valid" color="success" [hidden]="!isPay">Pay Now</ion-button>
+    <input type="number" id="total" [value]="roundedTotal" hidden>
+    <ion-input type="text" id="token" (ionChange)="presentAlertConfirm()" [(ngModel)]="cardToken" hidden></ion-input>
+  </div>
+</ion-content>
+

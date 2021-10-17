@@ -1,0 +1,42 @@
+ion-content {
+  height: 100vh;
+}
+
+.rewards-banner {
+  background-image: url('../../../assets/images/reward-banner.png');
+  background-repeat: no-repeat;
+  background-position: bottom;
+  height: 10vh;
+  width: 90vw;
+  border-radius: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 10%;
+  color: #f5f5f5;
+  h4 {
+    font-weight: 600;
+  }
+}
+.rewards-banner:hover {
+  cursor: pointer;
+}
+
+.cart-items-container {
+  margin: auto;
+  margin-top: 10%;
+  height: 55vh;
+}
+
+.checkout-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1em;
+}
+
+.cart-total-amount {
+  font-size: 0.9em;
+  font-weight: 600;
+}

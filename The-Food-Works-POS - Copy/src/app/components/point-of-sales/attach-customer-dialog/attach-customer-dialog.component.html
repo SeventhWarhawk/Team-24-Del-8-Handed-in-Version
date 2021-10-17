@@ -1,0 +1,21 @@
+<div class="search-container">
+  <h1>Add Customer to Sale</h1>
+  <form class="search-form">
+    <mat-form-field appearance="fill">
+      <mat-label>Search Customer</mat-label>
+      <mat-icon matSuffix>search</mat-icon>
+      <input matInput placeholder="Search by name, phone or email" #input type="text" [(ngModel)]="term">
+    </mat-form-field>
+  </form>
+  <div class="results-container">
+    <button mat-stroked-button color="warn" style="margin-bottom: 2%;" (click)="unattach()">Un-Attach Customer</button>
+    <mat-list>
+      <div *ngFor="let item of customer | filter:input.value" class="results-wrapper" (click)="captureData(item.CustomerId, item.CustomerName, item.CustomerSurname, item.CustomerEmail)">
+        <mat-list-item >{{item.CustomerName}} {{item.CustomerSurname}}</mat-list-item>
+        <div matSubheader class="subheader">{{item.CustomerEmail}}</div>
+        <div matSubheader class="subheader">{{item.CustomerTelephone}}</div>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+  </div>
+</div>

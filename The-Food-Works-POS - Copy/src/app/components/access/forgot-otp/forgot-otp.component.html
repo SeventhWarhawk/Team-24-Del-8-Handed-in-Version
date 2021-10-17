@@ -1,0 +1,20 @@
+<div class="login-box-container">
+  <div class="rainbow-container"></div>
+  <div class="login-box-wrapper">
+    <div class="login-content-wrapper">
+      <h2>Enter your OTP</h2>
+      <mat-label style="margin: 5%; width: 100%">Please enter the One Time Pin sent to your email address</mat-label>
+      <form [formGroup] = "OTPForm" style="margin-bottom: 60%;">
+        <mat-form-field style="content: center;" appearance="outline">
+          <mat-label>One-Time-Pin</mat-label>
+          <input matInput type="OTP" formControlName="OTP">
+          <mat-hint style="color:red;" hidden>Please check your inbox for a valid One-Time-Pin” </mat-hint>
+        <br>
+      </mat-form-field>
+      </form>
+      <img src="../../../../assets/images/undraw_Message_sent_re_q2kl.svg">
+      <button mat-stroked-button color="primary" (click)='checkOTP()'>Submit</button>
+      <a routerLink="/login">Remember Password?</a>
+    </div>
+  </div>
+</div>

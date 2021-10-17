@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Generate a cooking list</h1>
+<div mat-dialog-content>Please select a date for the cooking list</div>
+<br>
+<mat-form-field appearance="fill">
+  <mat-label>Choose a date</mat-label>
+  <input [min] = "minDate" matInput [matDatepicker]="picker" [(ngModel)]="date" (ngModelChange) = "validate(date)">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<br>
+
+<div mat-dialog-actions>
+  <button mat-stroked-button mat-dialog-close (click)="onCancel()">Close</button>
+  <button mat-stroked-button color="primary" (click)="onConfirm(date)">Generate</button>
+</div>

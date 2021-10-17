@@ -1,0 +1,101 @@
+@import "~src/styles.scss";
+
+// Home page styles
+.home-page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.center-container {
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  table-layout: fixed;
+  text-align: center;
+}
+
+// Toolbar
+mat-toolbar {
+  .application-name-text {
+    color: $text-color;
+    font-size: 1.7em;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      transition: 0.5s;
+      opacity: 0.6;
+    }
+  }
+  .home-toolbar-spacer {
+    flex: 1 1 auto;
+  }
+  .profile-icon {
+    color: $text-color;
+  }
+}
+
+.selectors-container {
+  width: 100vw;
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.selector {
+  height: 30vh;
+  width: 15vw;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
+
+}
+
+button {
+  width: 70%;
+  margin: 1%;
+  height: 10%;
+  display: flex;
+  padding: 5%;
+  align-items: center;
+  justify-content: center;
+}
+
+.reports-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 50vw;
+  height: 60vh;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+  background-color: #F3F9FB;
+}
+
+.container-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+
+}
+
+.container-2 {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 70%;
+  }
+  h1 {
+    margin-bottom: 20%;
+    font-size: 3em;
+    font-weight: 600;
+  }
+}

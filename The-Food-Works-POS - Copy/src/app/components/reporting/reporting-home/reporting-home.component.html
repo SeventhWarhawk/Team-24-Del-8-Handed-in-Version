@@ -1,0 +1,30 @@
+<div class="home-page-container">
+    <app-notification></app-notification>
+    <div class="parent-container">
+      <div class="reports-container">
+        <div class="container-1">
+          <button mat-stroked-button color="primary" [routerLink]="['/report-sales']">Generate
+              Sales Report </button>
+          <br><br>
+          <button mat-stroked-button color="primary"[routerLink]="['/report-stock']">Generate
+              Product Report</button>
+          <br><br>
+          <button mat-stroked-button color="primary"
+              [routerLink]="['/report-ingredient']">Generate Ingredients Report
+          </button>
+          <br><br>
+          <button mat-stroked-button color="primary"
+              [routerLink]="['/report-product-trends']">Generate Product Trends
+              Report
+          </button>
+          <br><br>
+          <button mat-stroked-button color="primary" routerLink="/report-branch">Generate Branch
+              Report</button>
+        </div>
+        <div class="container-2">
+          <h1 style="color: #4DB6AC">Reporting</h1>
+          <img src="../../../../assets/images/undraw_Data_report_re_p4so.svg">
+        </div>
+      </div>
+    </div>
+</div>
