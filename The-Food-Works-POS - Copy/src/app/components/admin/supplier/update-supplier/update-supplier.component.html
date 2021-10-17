@@ -1,0 +1,103 @@
+<div class="modal-content">
+  <div class="modal-body">
+    <div class="form-heading-wrapper" style="margin: 1.5%">
+      <mat-card class="title-card">
+        <h1>Update Supplier</h1>
+      </mat-card>
+    </div>
+    <form [formGroup]="SupplierDetailsForm" class="login-content-wrapper">
+
+      <h3>Please enter the following details for the supplier:</h3>
+      <div class="second-form-wrapper">
+        <!--Type-->
+        <mat-form-field>
+          <mat-label>Choose a Supplier Type</mat-label>
+          <mat-select [ngModel]="selectedOption" [ngModelOptions]="{standalone: true}"
+            (ngModelChange)="getTypeid($event)">
+            <mat-option *ngFor="let item of typesData" [value]="item.SupplierTypeId">
+              {{item.SupplierTypeName}}
+            </mat-option>
+          </mat-select>
+          <mat-hint>Select the Supplier's Type above</mat-hint>
+          <mat-error>Please select a type</mat-error>
+        </mat-form-field>
+
+        <!--Order Method-->
+        <mat-form-field>
+          <mat-label>Choose an Order Method</mat-label>
+          <mat-select [ngModel]="selectedOptionMethod" [ngModelOptions]="{standalone: true}"
+            (ngModelChange)="getMethodid($event)">
+            <mat-option *ngFor="let item of methodsData" [value]="item.OrderMethodId">
+              {{item.OrderMethodName}}
+            </mat-option>
+          </mat-select>
+          <mat-hint>Select the Order Method above</mat-hint>
+          <mat-error>Please select an order method</mat-error>
+        </mat-form-field>
+
+        <!--Status-->
+        <mat-form-field>
+          <mat-label>Supplier Status</mat-label>
+          <mat-select formControlName="SupplierStatuses" [ngModelOptions]="{standalone: true}"
+            (ngModelChange)="getStatusid($event)">
+            <mat-option *ngFor="let item of statusesData" [value]="item.SupplierStatusId">
+              {{item.SupplierStatusName}}
+            </mat-option>
+          </mat-select>
+          <mat-hint>Select the new status above</mat-hint>
+          <mat-error>Please select a status</mat-error>
+        </mat-form-field>
+        <br />
+
+        <!--Name-->
+        <mat-form-field>
+          <mat-label>Supplier Name</mat-label>
+          <input formControlName="SupplierName" #SupplierNameInput matInput />
+          <mat-hint>Please enter the supplier's name</mat-hint>
+          <mat-error>This field is required</mat-error>
+        </mat-form-field>
+
+        <!--VAT-->
+        <mat-form-field>
+          <mat-label>Supplier VAT Number</mat-label>
+          <input formControlName="SupplierVatNumber" #SupplierVatNumberInput matInput />
+          <mat-hint>Please enter the supplier's VAT number</mat-hint>
+          <mat-error>Please enter 10 digits</mat-error>
+        </mat-form-field>
+
+        <!--Contact Number-->
+        <mat-form-field>
+          <mat-label>Supplier Contact Number</mat-label>
+          <input formControlName="SupplierContactNumber" #SupplierContactNumberInput matInput />
+          <mat-hint>Please enter the supplier's contact number</mat-hint>
+          <mat-error>Please enter 10 digits</mat-error>
+        </mat-form-field>
+        <br />
+
+        <!--Email Address-->
+        <mat-form-field>
+          <mat-label>Supplier Email Address</mat-label>
+          <input formControlName="SupplierEmailAddress" #SupplierEmailAddressInput matInput />
+          <mat-hint>Please enter the supplier's email address</mat-hint>
+          <mat-error>Please enter a valid email address</mat-error>
+        </mat-form-field>
+
+
+        <!--Order Days -->
+        <div id="checkbox">
+          <mat-label style="margin: 1.3%">Select the supplier's order day(s) below:</mat-label>
+          <div class="checkbox-items">
+            <section *ngFor="let item of alldays">
+              <mat-checkbox (change)="getCheckboxes()" [(ngModel)]="item.checked" [ngModelOptions]="{standalone: true}">
+                {{item.SupplierOrderDayDescription}}</mat-checkbox>
+            </section>
+          </div>
+        </div>
+        <div mat-dialog-actions align="start" style="margin: 1.2%; margin-top: 10%">
+          <button mat-stroked-button style="margin-right: 20px; width: 15%" color="primary" type="submit" (click)="openDialog()">Confirm</button>
+          <button mat-stroked-button style="margin-right: 10px; width: 15%" (click)="onCancel()">Return</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

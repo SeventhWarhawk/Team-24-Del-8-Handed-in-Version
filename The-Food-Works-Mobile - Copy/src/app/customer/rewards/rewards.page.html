@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Loyalty Program</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" color="primary"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="rewards-container">
+    <div class="rewards-wrapper">
+      <div style="margin-top: 15%">
+        <ion-icon name="trophy-sharp" class="trophy"></ion-icon>
+      </div>
+      <h1><span>5<b>%</b></span></h1>
+      <p class="spacer-p">On <b><span>Every</span></b> Purchase Made, Back on Any Day During Your <b><span>Birthday</span></b> Month, Once a Year.</p>
+      <img src="../../../assets/images/undraw_Savings_re_eq4w (1).svg">
+      <p>All We Need Is Your Date of Birth!</p>
+      <div class="input-container">
+        <form [formGroup]="dateForm">
+          <ion-item>
+            <ion-datetime displayFormat="MMMM-DD-YYYY" max="{{formattedDate}}" formControlName="customerDob" placeholder="Date of Birth" lines="full"></ion-datetime>
+          </ion-item>
+        </form>
+        <ion-button color="primary" (click)="addToLoyalty()" [disabled]=!dateForm.valid>Join Now</ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

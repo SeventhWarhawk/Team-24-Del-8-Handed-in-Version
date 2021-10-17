@@ -1,0 +1,40 @@
+@import '~src/styles.scss';
+
+// Toolbar
+mat-toolbar {
+  .application-name-text {
+    color: $text-color;
+    font-size: 1.7em;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      transition: 0.5s;
+      opacity: 0.6;
+    }
+  }
+
+  .home-toolbar-spacer {
+    flex: 1 1 auto;
+  }
+
+  .toolbar-logo {
+    width: 10%;
+  }
+
+  img {
+    width: 2.3%;
+  }
+}
+
+.menu-button {
+    padding-left: 10%;
+    color: $text-color;
+    font-size: 0.7em;
+    font-weight: 400;
+
+    mat-icon {
+        margin-left: 10%;
+        margin-bottom: 4%;
+    }
+}

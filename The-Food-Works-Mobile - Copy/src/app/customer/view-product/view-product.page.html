@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Product</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" color="primary"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end" [routerLink]="['/cart']" routerDirection="forward">
+      <ion-fab-button size="small">
+        <ion-icon name="cart-outline" class="cart-button"></ion-icon>
+      </ion-fab-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="spinner-container" *ngIf="!product">
+    <ion-spinner color="primary"></ion-spinner>
+  </div>
+  <ng-container *ngIf="product">
+    <div class="container">
+      <div class="product-image-container">
+        <div class="product-image-wrapper">
+          <ng-container *ngIf="product.productImage !== null; else elseTemplate">
+            <img [src]="product.productImage">
+          </ng-container>
+          <ng-template #elseTemplate>
+            <img src="../../assets/images/the-food-works-logo.png">
+          </ng-template>
+        </div>
+        <div class="product-name">
+          <h1>{{ product.productName }}</h1>
+          <bar-rating [rate]='product.productRating' [max]='5' [readOnly]='true'></bar-rating>
+        </div>
+      </div>
+      <div class="product-description">
+        <ion-card>
+          <ion-card-content>
+            <h6>Price:</h6>
+            <p>{{ product.productPrice | currency:'R ' }}</p>
+            <h6>Description:</h6>
+            <p>{{ product.productDescription }}</p>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </ng-container>
+</ion-content>
+
+<ion-progress-bar type="indeterminate" *ngIf="isAdding"></ion-progress-bar>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button color="success" (click)="presentModal()">
+      <ion-icon name="add-outline"></ion-icon>
+      <ion-icon name="cart"></ion-icon><span>Add to Cart</span>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

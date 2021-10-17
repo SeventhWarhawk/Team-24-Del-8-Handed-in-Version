@@ -1,0 +1,193 @@
+<div class="parent-container">
+  <div class="admin-form-container">
+    <div class="form-heading-wrapper">
+      <mat-card class="title-card">
+        <h1>Create Branch</h1>
+      </mat-card>
+    </div>
+    <div class="form-content-wrapper">
+      <mat-horizontal-stepper linear #stepper class="create-branch-stepper">
+
+        <!-- First step in stepper (Branch Details Form) -->
+        <mat-step [stepControl]="addBranchDetailsForm" [editable]="isEditable">
+          <form [formGroup]="addBranchDetailsForm">
+            <ng-template matStepLabel>Enter New Branch Details</ng-template>
+            <div class="new-branch-form-container">
+
+              <!-- Branch Name Input -->
+              <mat-form-field hintLabel="Enter the new branch name">
+                <mat-label>Branch Name</mat-label>
+                <input matInput #branchNameInput maxlength="20" formControlName="branchName">
+                <mat-hint align="end">{{branchNameInput.value?.length || 0}}/20</mat-hint>
+                <mat-error *ngIf="errorHandling('branchName','required')">
+                  Branch Name may not be empty
+                </mat-error>
+                <mat-error *ngIf="errorHandling('branchName','maxlength')">
+                  Branch Name may not be more than 20 characters
+                </mat-error>
+              </mat-form-field>
+              <br>
+
+              <!-- Branch Contact Number -->
+              <mat-form-field hintLabel="Enter the new branch contact number">
+                <mat-label>Branch Contact Number</mat-label>
+                <input matInput #branchContactNumberInput maxlength="10" minLength="10"
+                  formControlName="branchContactNumber" numbersOnly>
+                <mat-hint align="end">{{branchContactNumberInput.value?.length || 0}}/10</mat-hint>
+                <mat-error *ngIf="errorHandling('branchContactNumber','required')">
+                  Branch Contact Number may not be empty
+                </mat-error>
+                <mat-error *ngIf="errorHandling('branchContactNumber','maxlength')">
+                  Branch Contact Number may not be more than 10 characters
+                </mat-error>
+                <mat-error *ngIf="errorHandling('branchContactNumber','minlength')">
+                  Branch Contact Number may not be less than 10 characters
+                </mat-error>
+              </mat-form-field>
+              <br>
+
+              <!-- Branch Email Address  -->
+              <mat-form-field hintLabel="Enter the new branch email address">
+                <mat-label>Branch Email Address</mat-label>
+                <input matInput #branchEmailAddressInput maxLength="50" formControlName="branchEmailAddress">
+                <mat-hint align="end">{{branchEmailAddressInput.value?.length || 0}}/50</mat-hint>
+                <mat-error *ngIf="errorHandling('branchEmailAddress','required')">
+                  Branch Email Address may not be empty
+                </mat-error>
+                <mat-error *ngIf="errorHandling('branchEmailAddress','maxlength')">
+                  Branch Email Address may not be more than 50 characters
+                </mat-error>
+                <mat-error *ngIf="errorHandling('branchEmailAddress','pattern')">
+                  Branch Email Address must be valid
+                </mat-error>
+              </mat-form-field>
+              <br>
+
+              <!-- Branch Image Upload -->
+              <mat-card class="branch-image-upload-card">
+                <button class="image-upload-button" mat-stroked-button (click)="fileUploader.click()"
+                  color="primary">Upload Image</button>
+                <label for="fileUploader" id="file"></label>
+                <input type="file" accept="image/*" #fileUploader id="fileUploader" (change)="getImageFile($event)"
+                  style="display: none;">
+              </mat-card>
+
+              <!-- Branch Image URL (Hidden)-->
+              <input type="hidden" formControlName="branchImage">
+            </div>
+            <button mat-stroked-button matStepperNext color="primary"
+              [disabled]="!addBranchDetailsForm.valid">Next</button>
+          </form>
+        </mat-step>
+
+        <!-- Second step in stepper (Branch Address Form) -->
+        <mat-step [stepControl]="addBranchAddressForm" [editable]="isEditable">
+          <form [formGroup]="addBranchAddressForm">
+            <ng-template matStepLabel>Enter New Branch Address</ng-template>
+            <div class="new-branch-form-container">
+
+              <!-- Main Branch Address Parameter (Input that generates the autocomplete dropdown list) -->
+              <mat-form-field>
+                <mat-label>Enter New Branch Address</mat-label>
+                <input matInput placeholder="Enter a location" formControlName="branchAddressFull"
+                  ngx-google-places-autocomplete #placesRef="ngx-places" [options]="addressOptions"
+                  (onAddressChange)="handleAddressChange($event)" />
+                <mat-hint>Enter the address of the new branch and select the appropriate address item</mat-hint>
+                <mat-error>Please enter the new branch’s address</mat-error>
+              </mat-form-field>
+
+              <!-- Branch Street Name (Autofilled) -->
+              <mat-form-field>
+                <mat-label>Street Name</mat-label>
+                <input matInput formControlName="branchStreetName" readonly #branchStreetNameInput>
+                <mat-hint>The street name of the address selected</mat-hint>
+                <mat-error>Please enter the street name of the address specified</mat-error>
+              </mat-form-field>
+              <br>
+
+              <!-- Branch Suburb (Autofilled) -->
+              <mat-form-field>
+                <mat-label>Suburb</mat-label>
+                <input matInput formControlName="branchSuburb" readonly #branchSuburbInput [(ngModel)]="suburb">
+                <mat-hint>The suburb of the address selected</mat-hint>
+                <mat-error>Please enter a valid suburb</mat-error>
+              </mat-form-field>
+              <br>
+
+              <!-- Branch City (Autofilled) -->
+              <mat-form-field>
+                <mat-label>City / Town</mat-label>
+                <input matInput formControlName="branchCity" readonly #branchCityInput [(ngModel)]="city">
+                <mat-hint>The city of the address selected</mat-hint>
+                <mat-error>Please enter a valid city</mat-error>
+              </mat-form-field>
+
+              <!-- Branch Province (Autofilled) -->
+              <mat-form-field>
+                <mat-label>Province</mat-label>
+                <input matInput formControlName="branchProvince" readonly #branchProvinceInput [(ngModel)]="province">
+                <mat-hint>The province of the address selected</mat-hint>
+                <mat-error>Please enter the province of the address specified</mat-error>
+              </mat-form-field>
+              <br>
+
+              <!-- Branch Country (Autofilled) -->
+              <mat-form-field>
+                <mat-label>Country</mat-label>
+                <input matInput formControlName="branchCountry" readonly #branchCountryInput [(ngModel)]="country">
+                <mat-hint>The country of the address selected</mat-hint>
+                <mat-error>Please enter the country of the address specified</mat-error>
+              </mat-form-field>
+              <br>
+
+              <!-- Branch ZIP (Autofilled) -->
+              <mat-form-field>
+                <mat-label>ZIP</mat-label>
+                <input matInput formControlName="branchZip" readonly #branchZipInput [(ngModel)]="zip">
+                <mat-hint>The ZIP / Postal code of the address selected</mat-hint>
+                <mat-error>Please enter the ZIP / Postal code of the address specified</mat-error>
+              </mat-form-field>
+              <br>
+
+              <!-- Branch Latitude (Autofilled and Hidden)-->
+              <input type="hidden" formControlName="branchLate">
+
+              <!-- Branch Longitude (Autofilled and Hidden)-->
+              <input type="hidden" formControlName="branchLng">
+            </div>
+
+            <!-- Button to navigate to previous step in stepper -->
+            <button mat-stroked-button matStepperPrevious color="primary">Back</button>
+
+            <!-- Button to navigate to next step in stepper (disabled until branch address form is valid) -->
+            <button mat-stroked-button matStepperNext color="primary"
+              [disabled]="!addBranchAddressForm.valid">Next</button>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Confirm New Branch Addition</ng-template>
+          <div class="new-branch-complete-container">
+            <h3><b>Branch Details</b></h3>
+            <p>
+              Branch Name: <span>{{branchNameInput.value}}</span><br>
+              Branch Contact Number: <span>{{branchContactNumberInput.value}}</span><br>
+              Branch Email Address: <span>{{branchEmailAddressInput.value}}</span><br>
+            </p>
+            <h3><b>Branch Address</b></h3>
+            <p>
+              Branch Street Name: <span>{{streetAddress}}</span><br>
+              Branch Suburb: <span>{{suburb}}</span><br>
+              Branch City: <span>{{city}}</span><br>
+              Branch Province: <span>{{province}}</span><br>
+              Branch Country: <span>{{country}}</span><br>
+              Branch ZIP: <span>{{zip}}</span><br>
+            </p>
+          </div>
+          <button mat-stroked-button matStepperPrevious color="primary">Back</button>
+          <button mat-stroked-button color="primary" type="submit" (click)="onSubmit()">Confirm</button>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+    <mat-progress-bar [mode]="loadingMode" value="100"></mat-progress-bar>
+  </div>
+</div>

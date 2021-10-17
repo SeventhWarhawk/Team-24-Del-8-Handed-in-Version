@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "register-component.component.scss"
+    ],
+    "names": [],
+    "file": "register-component.component.css"
+}

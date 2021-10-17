@@ -1,0 +1,108 @@
+@import '~@angular/material/theming';
+@import '~src/styles.scss';
+
+.branch-title {
+  color: #4DB6AC;
+  margin: 3% 3% 1%;
+  font-weight: 500;
+  font-size: 4vh;
+  mat-icon {
+    float: right;
+    font-weight: 800;
+    &:hover {
+      opacity: 0.6;
+      cursor: pointer;
+    }
+  }
+}
+
+hr {
+  border: 1px solid #4DB6AC;
+  width: 20vw;
+  opacity: 0.7;
+}
+
+h3 {
+  color: black;
+  margin: 1% 3% 1%;
+  font-weight: 500;
+  font-size: 2vh;
+}
+
+h4 {
+  padding-top: 5%;
+  font-weight: 500;
+  color: #4DB6AC;
+}
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.viewed-branch-content-container {
+  display: flex;
+  width: 70.5vw;
+  height: 42vh;
+  margin: 1% 3% 1%;
+  overflow: auto;
+  mat-form-field {
+    padding-bottom: 10%;
+    width: 18vw;
+    input {
+      color: #8D9192;
+    }
+    mat-icon {
+      position: absolute;
+      padding-left: 5%;
+      color: #4DB6AC;
+      float: right;
+      font-size: x-large;
+      &:hover {
+        opacity: 0.6;
+        cursor: pointer;
+      }
+    }
+  }
+  .save-update-button {
+    height: fit-content;
+    width: fit-content;
+    position: relative;
+
+  }
+  .discard-update-button {
+    height: fit-content;
+    width: fit-content;
+    position: relative;
+    margin-right: 5%;
+  }
+
+  .mat-card {
+    margin-left: 3%;
+    background-color: #F3F9FB;
+    width: 10.3vw;
+    @include mat-elevation(3);
+    img {
+      width: 10vw;
+      margin: 1%;
+    }
+  }
+}
+
+// Defaults
+
+mat-progress-bar {
+  width: 75vw;
+}
+
+:host ::ng-deep .mat-progress-bar-fill::after {
+  background: linear-gradient(to left, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%) !important;
+}
+
+// Disable Header Navigation
+::ng-deep .mat-horizontal-stepper-header {
+  pointer-events: none !important;
+}
+

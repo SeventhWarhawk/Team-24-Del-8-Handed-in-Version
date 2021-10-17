@@ -1,0 +1,211 @@
+<div class="add-loyalty-dialog-container">
+  <div class="loading-wrapper" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+  </div>
+  <mat-horizontal-stepper linear #stepper>
+
+
+    <!-- STEP 1 (DETAILS) -->
+    <mat-step>
+
+      <form [formGroup]="addCustomerDetailsForm">
+        <ng-template matStepLabel>Customer Details</ng-template>
+        <div class="new-branch-form-container">
+
+          <!-- Customer Name Input -->
+          <mat-form-field hintLabel="Enter the new customers name">
+            <mat-label>Customer Name</mat-label>
+            <input matInput #customerNameInput maxlength="50" formControlName="customerName">
+            <mat-hint align="end">{{customerNameInput.value?.length || 0}}/50</mat-hint>
+            <mat-error *ngIf="errorHandling('customerName','required')">
+              Customer Name may not be empty
+            </mat-error>
+            <mat-error *ngIf="errorHandling('customerName','maxlength')">
+              Customer Name may not be more than 50 characters
+            </mat-error>
+          </mat-form-field>
+          <br>
+
+          <!-- Customer Surname Input -->
+          <mat-form-field hintLabel="Enter the new customers surname">
+            <mat-label>Customer Surname</mat-label>
+            <input matInput #customerSurnameInput maxlength="50" formControlName="customerSurname">
+            <mat-hint align="end">{{customerSurnameInput.value?.length || 0}}/50</mat-hint>
+            <mat-error *ngIf="errorHandling('customerSurname','required')">
+              Customer Surname may not be empty
+            </mat-error>
+            <mat-error *ngIf="errorHandling('customerSurname','maxlength')">
+              Customer Surname may not be more than 50 characters
+            </mat-error>
+          </mat-form-field>
+          <br>
+
+          <!-- Customer Email Address Input  -->
+          <mat-form-field hintLabel="Enter the new customers email address">
+            <mat-label>Customer Email Address</mat-label>
+            <input matInput #customerEmailAddressInput maxLength="50" formControlName="customerEmail">
+            <mat-hint align="end">{{customerEmailAddressInput.value?.length || 0}}/50</mat-hint>
+            <mat-error *ngIf="errorHandling('customerEmail','required')">
+              Customer Email Address may not be empty
+            </mat-error>
+            <mat-error *ngIf="errorHandling('customerEmail','maxlength')">
+              Customer Email Address may not be more than 50 characters
+            </mat-error>
+            <mat-error *ngIf="errorHandling('customerEmail','pattern')">
+              Customer Email Address must be valid
+            </mat-error>
+          </mat-form-field>
+          <br>
+
+          <!-- Customer Contact Number -->
+          <mat-form-field hintLabel="Enter the new customers contact number">
+            <mat-label>Customer Contact Number</mat-label>
+            <input matInput #customerContactNumberInput maxlength="10" minLength="10" formControlName="customerTelephone" numbersOnly>
+            <mat-hint align="end">{{customerContactNumberInput.value?.length || 0}}/10</mat-hint>
+            <mat-error *ngIf="errorHandling('customerTelephone','required')">
+              Customer Contact Number may not be empty
+            </mat-error>
+            <mat-error *ngIf="errorHandling('customerTelephone','maxlength')">
+              Customer Contact Number may not be more than 10 characters
+            </mat-error>
+            <mat-error *ngIf="errorHandling('customerTelephone','minlength')">
+              Customer Contact Number may not be less than 10 characters
+            </mat-error>
+          </mat-form-field>
+          <br>
+
+          <!-- Customer Date of Birth Input  -->
+          <mat-form-field hintLabel="Enter the new customers date of birth">
+            <mat-label>Customer Date of Birth</mat-label>
+            <input matInput #customerDobInput formControlName="customerDob" [matDatepicker]="picker" [max]="todaysDate" readonly>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="errorHandling('customerDob','required')">
+              Customer Date of Birth may not be empty
+            </mat-error>
+          </mat-form-field>
+          <br>
+
+        </div>
+        <button mat-stroked-button matStepperNext color="primary" [disabled]="!addCustomerDetailsForm.valid">Next</button>
+      </form>
+    </mat-step>
+
+    <!-- STEP 2 (ADDRESS) -->
+    <mat-step>
+      <form [formGroup]="addCustomerAddressForm">
+        <ng-template matStepLabel>Customer Address</ng-template>
+        <div class="new-branch-form-container">
+
+          <!-- Main Customer Address Parameter (Input that generates the autocomplete dropdown list) -->
+          <mat-form-field>
+            <mat-label>Enter New Branch Address</mat-label>
+            <input matInput placeholder="Enter a location" formControlName="customerAddressFull" ngx-google-places-autocomplete #placesRef="ngx-places" [options]="addressOptions" (onAddressChange)="handleAddressChange($event)" />
+            <mat-hint>Enter the address of the new customer and select the appropriate address item</mat-hint>
+            <mat-error>Please enter the new customers address</mat-error>
+          </mat-form-field>
+
+          <!-- Customer Street Name (Autofilled) -->
+          <mat-form-field>
+            <mat-label>Street Name</mat-label>
+            <input matInput formControlName="customerStreetName" readonly #customerStreetNameInput>
+            <mat-hint>The street name of the address selected</mat-hint>
+            <mat-error>Please enter the street name of the address specified</mat-error>
+          </mat-form-field>
+          <br>
+
+          <!-- Customer Street Seperate Name (Hidden) -->
+          <input type="hidden" formControlName="customerStreetNameSeperate" #customerStreetNameSeperateInput>
+
+          <!-- Customer Street Seperate Number (Hidden) -->
+          <input type="hidden" formControlName="customerStreetNumberSeperate" #customerStreetNumberSeperateInput>
+
+          <!-- Customer Suburb (Autofilled) -->
+          <mat-form-field>
+            <mat-label>Suburb</mat-label>
+            <input matInput formControlName="customerSuburb" readonly #customerSuburbInput [(ngModel)]="suburb">
+            <mat-hint>The suburb of the address selected</mat-hint>
+            <mat-error>Please enter a valid suburb</mat-error>
+          </mat-form-field>
+          <br>
+
+          <!-- Customer City (Autofilled) -->
+          <mat-form-field>
+            <mat-label>City / Town</mat-label>
+            <input matInput formControlName="customerCity" readonly #customerCityInput [(ngModel)]="city">
+            <mat-hint>The city of the address selected</mat-hint>
+            <mat-error>Please enter a valid city</mat-error>
+          </mat-form-field>
+
+          <!-- Customer Province (Autofilled) -->
+          <mat-form-field>
+            <mat-label>Province</mat-label>
+            <input matInput formControlName="customerProvince" readonly #customerProvinceInput [(ngModel)]="province">
+            <mat-hint>The province of the address selected</mat-hint>
+            <mat-error>Please enter the province of the address specified</mat-error>
+          </mat-form-field>
+          <br>
+
+          <!-- Customer Country (Autofilled) -->
+          <mat-form-field>
+            <mat-label>Country</mat-label>
+            <input matInput formControlName="customerCountry" readonly #customerCountryInput [(ngModel)]="country">
+            <mat-hint>The country of the address selected</mat-hint>
+            <mat-error>Please enter the country of the address specified</mat-error>
+          </mat-form-field>
+          <br>
+
+          <!-- Customer ZIP (Autofilled) -->
+          <mat-form-field>
+            <mat-label>ZIP</mat-label>
+            <input matInput formControlName="customerZip" readonly #customerZipInput [(ngModel)]="zip">
+            <mat-hint>The ZIP / Postal code of the address selected</mat-hint>
+            <mat-error>Please enter the ZIP / Postal code of the address specified</mat-error>
+          </mat-form-field>
+          <br>
+
+          <!-- Customer Latitude (Autofilled and Hidden)-->
+          <input type="hidden" formControlName="customerLate">
+
+          <!-- Customer Longitude (Autofilled and Hidden)-->
+          <input type="hidden" formControlName="customerLng">
+        </div>
+
+        <!-- Button to navigate to previous step in stepper -->
+        <button mat-stroked-button matStepperPrevious color="primary">Back</button>
+
+        <!-- Button to navigate to next step in stepper (disabled until Customer address form is valid) -->
+        <button mat-stroked-button matStepperNext color="primary" [disabled]="!addCustomerAddressForm.valid">Next</button>
+      </form>
+
+    </mat-step>
+
+    <!-- Step 3 (Confirm Addition) -->
+    <mat-step>
+
+      <ng-template matStepLabel>Confirm New Customer Addition</ng-template>
+          <div class="new-branch-complete-container">
+            <h3><b>Branch Details</b></h3>
+            <p>
+              Customer Name: <span>{{customerNameInput.value}}</span><br>
+              Customer Contact Number: <span>{{customerContactNumberInput.value}}</span><br>
+              Customer Email Address: <span>{{customerEmailAddressInput.value}}</span><br>
+              Customer Contact Number: <span>{{customerContactNumberInput.value}}</span><br>
+            </p>
+            <h3><b>Branch Address</b></h3>
+            <p>
+              Branch Street Name: <span>{{streetAddress}}</span><br>
+              Branch Suburb: <span>{{suburb}}</span><br>
+              Branch City: <span>{{city}}</span><br>
+              Branch Province: <span>{{province}}</span><br>
+              Branch Country: <span>{{country}}</span><br>
+              Branch ZIP: <span>{{zip}}</span><br>
+            </p>
+          </div>
+          <button mat-stroked-button matStepperPrevious color="primary">Back</button>
+          <button mat-stroked-button color="primary" type="submit" (click)="createCustomer()">Confirm</button>
+    </mat-step>
+  </mat-horizontal-stepper>
+
+</div>
+

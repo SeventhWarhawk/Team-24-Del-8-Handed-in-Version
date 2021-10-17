@@ -1,0 +1,16 @@
+<div class="add-modal-container">
+  <h1 mat-dialog-title>Quantity</h1>
+  <div mat-dialog-content>
+    Please enter this item's quantity:
+    <form [formGroup]="form">
+        <mat-form-field>
+          <input matInput formControlName="Quantity">
+          <mat-error>Quantity entered must be a number between 1 and 100</mat-error>
+        </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-stroked-button mat-dialog-close color="primary" (click)="onConfirm()"[disabled]="!form.valid">OK</button>
+    <button mat-stroked-button mat-dialog-close (click)="onCancel()">Cancel</button>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+.confirm-modal-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  .mat-dialog-content {
+    text-align: center;
+    align-self: center;
+  }
+}

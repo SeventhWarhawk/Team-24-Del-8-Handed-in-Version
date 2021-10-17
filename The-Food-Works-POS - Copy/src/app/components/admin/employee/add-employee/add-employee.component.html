@@ -1,0 +1,91 @@
+<div class="parent-container">
+  <div class="admin-form-container">
+    <div class="form-heading-wrapper">
+      <mat-card class="title-card">
+        <h1>Add Employee</h1>
+      </mat-card>
+    </div>
+    <div class="form-content-wrapper">
+      <div class="second-form-wrapper">
+        <form [formGroup] = "form" margin ="10px" (ngSubmit) = "writeNewEmployee(form.value)">
+          <!--Name-->
+            <div>
+             <mat-form-field>
+                <input formControlName ="name" matInput placeholder ="First Name*">
+               <mat-hint>Enter First Name</mat-hint>
+                <mat-error>This Field is required, may only contain letters</mat-error>
+            </mat-form-field>
+            <!--Surname-->
+            <mat-form-field>
+                <input formControlName ="surname" matInput placeholder ="Last Name*">
+                <mat-hint>Enter Last Name</mat-hint>
+                <mat-error>This Field is required, may only contain letters</mat-error>
+            </mat-form-field>
+            <!--ID-->
+            <mat-form-field>
+                <input formControlName ="IDNumber" matInput placeholder ="ID Number*">
+                <mat-hint>Enter ID Number</mat-hint>
+                <mat-error>This Field is required, must be 13 digits long</mat-error>
+            </mat-form-field>
+            </div>
+            <br>
+            <div>
+            <!--Telephone-->
+            <mat-form-field>
+                <input formControlName ="telephone" matInput placeholder ="Telephone Number*">
+                  <mat-hint>Enter Telephone Number</mat-hint>
+                <mat-error>Invalid Telephone Number, must be 10 digits long</mat-error>
+            </mat-form-field>
+            <!--Email-->
+            <mat-form-field>
+                <input formControlName ="email" matInput placeholder ="Email*">
+                <mat-hint>Enter Email Address</mat-hint>
+                <mat-error>Invalid Email Address, must contain an @ symbol</mat-error>
+            </mat-form-field>
+            <!--Branch-->
+            <mat-form-field>
+            <mat-label>Branch</mat-label>
+              <mat-select formControlName = "branch">
+                        <mat-option *ngFor = "let branch of branches" [value]="branch.BranchId">{{branch.BranchName}}</mat-option>
+              </mat-select>
+              <mat-hint>Please select a branch</mat-hint>
+              <mat-error>This Field is required</mat-error>
+             </mat-form-field>
+             </div>
+            <br>
+            <div>
+
+            <!--password-->
+            <mat-form-field>
+                <input formControlName ="password" matInput placeholder ="Password*">
+                <mat-hint>Enter Password</mat-hint>
+                <mat-error>This Field is required</mat-error>
+            </mat-form-field>
+            <!--confirm password-->
+            <mat-form-field>
+                <input formControlName ="confirmPassword" matInput placeholder ="Confirm Password*">
+                <mat-hint>Confirm Password</mat-hint>
+                <mat-error>This Field is required</mat-error>
+            </mat-form-field>
+            <!--user role-->
+            <mat-form-field>
+            <mat-label>User Role</mat-label>
+              <mat-select formControlName = "userRole">
+                         <mat-option *ngFor = "let role of userRoles" [value]="role.UserRoleId">{{role.UserRoleName}}</mat-option>
+              </mat-select >
+              <mat-hint>Select a Branch</mat-hint>
+              <mat-error>This Field is required</mat-error>
+          </mat-form-field>
+        </div>
+
+            <div class="button" align="left" style="margin: 2%;">
+              <button mat-stroked-button color="primary" type = "submit" [disabled]="!form.valid" style="margin-right: 2%;">Submit</button>
+              <button mat-stroked-button routerLink="/admin-home">Cancel</button>
+            </div>
+
+        </form>
+      </div>
+    </div>
+    <mat-progress-bar value="100"></mat-progress-bar>
+  </div>
+</div>

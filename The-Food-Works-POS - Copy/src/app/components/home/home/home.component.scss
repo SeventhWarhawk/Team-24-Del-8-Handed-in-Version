@@ -1,0 +1,73 @@
+@import '~src/styles.scss';
+
+// Home page styles
+.home-page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.chip-list {
+  width: 100%;
+  margin-top: 1em;
+  display: flex;
+  mat-chip {
+    margin-left: 1em;
+  }
+}
+
+mat-chip:hover {
+  cursor: pointer;
+}
+
+// Toolbar
+mat-toolbar {
+  .application-name-text {
+    color: $text-color;
+    font-size: 1.7em;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      transition: 0.5s;
+      opacity: 0.6;
+    }
+  }
+  .home-toolbar-spacer {
+    flex: 1 1 auto;
+  }
+  .profile-icon {
+    color: $text-color;
+  }
+  img {
+    width: 2.3%;
+  }
+  button {
+    color: $text-color;
+  }
+}
+
+.selectors-container {
+  width: 100vw;
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.selector {
+  height: 30vh;
+  width: 15vw;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+
+  button {
+    height: 100%;
+    width: 100%;
+    background-color: #f3f9fb;
+    border-bottom: 5px solid transparent;
+    border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
+    border-image-slice: 1;
+    font-size: 1.4em;
+  }
+}

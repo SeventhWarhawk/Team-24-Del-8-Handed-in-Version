@@ -1,0 +1,81 @@
+  <div class="parent-container">
+    <div class="admin-form-container">
+      <div class="form-heading-wrapper">
+        <mat-card class="title-card">
+          <h1>View Employee</h1>
+        </mat-card>
+      </div>
+      <div class="form-content-wrapper">
+      <div id = 'print-section'>
+        <form [formGroup] = "form" *ngIf="form" margin ="10px" >
+        <!--Personal Details-->
+        <div>
+          <div>
+          <h2>Personal Details:</h2>
+
+           <mat-form-field>
+              <input formControlName ="name" matInput placeholder ="First Name">
+             <!--<mat-hint>Enter First Name</mat-hint>-->
+              <mat-error>This Field is required</mat-error>
+          </mat-form-field>
+          <!--Surname-->
+          <mat-form-field>
+              <input formControlName ="surname" matInput placeholder ="Last Name">
+              <!-- <mat-hint>Enter Last Name</mat-hint>-->
+              <mat-error>This Field is required</mat-error>
+          </mat-form-field>
+          <!--ID-->
+          <mat-form-field>
+              <input formControlName ="IDNumber" matInput placeholder ="ID Number">
+              <!-- <mat-hint></mat-hint>-->
+              <mat-error>This Field is required</mat-error>
+          </mat-form-field>
+          </div>
+          <br>
+          <div>
+          <!--Telephone-->
+          <mat-form-field>
+              <input formControlName ="telephone" matInput placeholder ="Telephone Number">
+             <!-- <mat-hint></mat-hint>-->
+              <mat-error>This Field is required</mat-error>
+          </mat-form-field>
+          <!--Email-->
+          <mat-form-field>
+              <input formControlName ="email" matInput placeholder ="Email">
+              <!-- <mat-hint></mat-hint>-->
+              <mat-error>Invalid Email Address</mat-error>
+          </mat-form-field>
+          <!--Branch-->
+          <mat-form-field>
+           <input formControlName ="branch" matInput placeholder ="Branch">
+
+           </mat-form-field>
+           </div>
+        </div>
+        </form>
+        <br>
+        <!--Training Modules Completed-->
+        <div>
+          <h2>Training Modules Completed:</h2>
+          <div style = "display: flex; margin:20px">
+          <mat-icon>assignment_turned_in</mat-icon><h3>Kitchen Basics 101</h3>
+          </div>
+          <div style = "display: flex; margin:20px">
+          <mat-icon>assignment_turned_in</mat-icon><h3>Health and Safety 101</h3>
+          </div>
+          <div style = "display: flex; margin:20px">
+          <mat-icon>assignment_turned_in</mat-icon><h3>GenPoint Intodruction Course</h3>
+          </div>
+        </div>
+         </div>
+        <div class = "button" align = "right">
+          <button printTitle="Employee Details" printSectionId="print-section" ngxPrint>Print</button>
+          <button (click) = "goBack">Back</button>
+        </div>
+
+
+    </div>
+
+    </div>
+  </div>
+

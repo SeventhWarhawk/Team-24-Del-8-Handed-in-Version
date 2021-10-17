@@ -1,0 +1,29 @@
+<!-- <div class="center-container">
+  <app-admin-navigation></app-admin-navigation>
+  <span class="page-title">Create Training Module Type</span>
+  <div class="admin-form-container">
+    <div class="form-content-wrapper">
+
+    </div>
+  </div>
+</div> -->
+
+<div class="modal-content">
+  <div class="modal-header">
+    <h3>Create Training Module Type</h3>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="addTypeForm">
+      <div class="row justify-content-center">
+        <div class="col-md-8 keyword">
+          <mat-form-field appearance="legacy">
+            <mat-label>Description</mat-label>
+            <input matInput type="text" formControlName="description">
+          </mat-form-field>
+          <br>
+          <button mat-raised-button (click)="openModal()">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

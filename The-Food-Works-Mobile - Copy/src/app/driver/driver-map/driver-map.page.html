@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Route</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" color="primary"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="primary" (click)="doNavigate()">Navigation</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <google-map
+  height="100%"
+  width="100%"
+  [zoom]="zoom"
+  [center]="center"
+  [options]="options">
+  <map-directions-renderer *ngIf="(directionsResults$ | async) as directionsResults"
+  [directions]="directionsResults"
+  [options]="directionOptions"></map-directions-renderer>
+  <map-marker #marker="mapMarker"
+    *ngFor="let marker of markerPositions"
+    #somemarker="mapMarker"
+    [position]="marker.coords"
+    (mapClick)="openInfoWindow(somemarker, marker.saleID, marker.address)"></map-marker>
+  <map-info-window>
+    <div class="infoWindow">
+      Order Number: <br><br> {{ orderID }} <br><br> Address: <br><br> {{ address }} <br><br> <ion-button color="primary" expand="block" class="info-window-button" (click)="doComplete()">View</ion-button>
+    </div>
+  </map-info-window>
+  <map-marker #marker="mapMarker"
+    #somemarker="mapMarker"
+    [position]="positionMarker"
+    [options]="positionMarkerOptions"></map-marker>
+ </google-map>
+</ion-content>

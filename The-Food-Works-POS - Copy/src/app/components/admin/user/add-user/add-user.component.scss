@@ -1,0 +1,42 @@
+@import '~src/styles.scss';
+
+.login-box-container {
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f9fb;
+
+}
+
+
+.login-box-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height: 70%;
+  background-color: white;
+  box-shadow: $shadow;
+  border-bottom: 5px solid transparent;
+    border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
+    border-image-slice: 1;
+}
+
+.login-content-wrapper {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  padding: top right bottom left;
+  flex-direction: column;
+  text-align: center;
+  h1 {
+    font-size: 3em;
+    color: #433d3c;
+  }
+
+  button {
+    background-color: #4db6ac;
+  }
+
+}

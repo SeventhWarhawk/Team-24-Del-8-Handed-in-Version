@@ -1,0 +1,178 @@
+.create-training-module-stepper {
+  background-color: #F3F9FB;
+  width: 75vw;
+  height: 60vh;
+  button {
+    margin: 1.5%;
+    width: 10%;
+  }
+  .new-branch-form-container {
+    display: flex;
+    flex-wrap: wrap;
+    mat-form-field {
+      flex: 1 0 45%;
+      margin: 1.5%;
+      flex-grow: 1;
+    }
+  }
+  .new-branch-form-container-2 {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 1.5%;
+    padding-top: 1.5%;
+    height: 370px;
+    overflow: auto;
+    mat-form-field {
+      width: 460px;
+    }
+    hr {
+      margin-top: 3%;
+      margin-bottom: 3%;
+      border-bottom: #4DB6AC 2px solid;
+      width: 70vw;
+    }
+  }
+  .content-section {
+    margin-top: 2%;
+    margin-left: 1.5%;
+    margin-bottom: 2.5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    mat-label {
+      margin-top: 0.2%;
+      color: #4DB6AC;
+      font-weight: 600;
+    }
+    .content-margin {
+      margin-right: 0.5%;
+      margin-left: 5%;
+    }
+  }
+}
+
+.stepper-content-container {
+  min-height: 43vh;
+  max-height: 43vh;
+  overflow: auto;
+  h1 {
+    margin-left: 1.5%;
+    margin-top: 3%;
+    color: #4DB6AC;
+  }
+}
+
+.image-upload-container {
+  .tile-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px dotted #4DB6AC;
+    width: 20vw;
+    height: 10vw;
+    mat-form-field {
+      width: 15vw;
+    }
+    button {
+      width: fit-content;
+      color: white;
+    }
+  }
+}
+
+// Drag and Drop Content List
+
+.example-list {
+  width: 460px;
+  max-width: 100%;
+  border: solid 1px #ccc;
+  min-height: 60px;
+  display: block;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.example-box {
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.stepper-header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.text-editor-alert {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  background-color: rgb(255, 107, 107, 0.6);
+  border: 1px solid red;
+
+  .text-editor-alert-text {
+    margin-left: 2%;
+    color: red;
+    font-weight: 500;
+  }
+}
+
+hr {
+  margin-top: 3%;
+  margin-bottom: 3%;
+  border-bottom: #4DB6AC 2px solid;
+  width: 70vw;
+}
+
+// Defaults
+
+mat-progress-bar {
+  width: 75vw;
+}
+
+:host ::ng-deep .mat-progress-bar-fill::after {
+  background: linear-gradient(to left, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%) !important;
+}
+
+// Disable Header Navigation
+::ng-deep .mat-horizontal-stepper-header {
+  pointer-events: none !important;
+}

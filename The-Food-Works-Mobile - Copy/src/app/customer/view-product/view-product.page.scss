@@ -1,0 +1,61 @@
+ion-content {
+  color: #71c9ce;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-image-wrapper {
+  // mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 0%, transparent 100%);
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 48vh;
+  }
+}
+
+.product-name {
+  color: #71c9ce;
+  // position: absolute;
+  // top: 42%;
+  // left: 4%;
+  padding: 0 1em;
+  h1 {
+    margin-bottom: -15px;
+  }
+  ion-icon {
+    color: #71c9ce;
+  }
+}
+
+.product-description {
+  h6 {
+    font-weight: 600;
+  }
+}
+
+.spinner-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-ingredients {
+  color: #71c9ce;
+}
+
+ion-footer {
+  padding: 1em;
+  border: none;
+  text-align: center;
+  ion-button {
+    width: 60%;
+    span {
+      margin-left: 0.3em;
+    }
+  }
+}

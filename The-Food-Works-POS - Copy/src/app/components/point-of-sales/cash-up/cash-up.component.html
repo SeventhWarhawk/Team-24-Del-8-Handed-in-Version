@@ -1,0 +1,92 @@
+<style>
+
+  button{
+    font-size:20;
+    margin-right: 30px;
+    display: in-line block;
+    text-align: center;
+    font-size: 15px;
+  }
+  table td, table th{
+    font-size:15px;
+  }
+</style>
+
+<div class="center-container">
+  <app-admin-navigation></app-admin-navigation>
+  <span class="page-title">Cash Up</span>
+  <div class="admin-form-container">
+    <div class="form-content-wrapper">
+
+       <!--Table-->
+
+
+
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+         <ng-container matColumnDef="cash">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Cash Sales </th>
+          <td mat-cell *matCellDef="let element"> {{element.cash}} </td>
+
+        </ng-container>
+
+        <ng-container matColumnDef="card">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Card Sales</th>
+          <td mat-cell *matCellDef="let element"> {{element.card}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="voucher">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Voucher Sales  </th>
+            <td mat-cell *matCellDef="let element"> {{element.voucher}} </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+    <br><br>
+
+
+       <form [formGroup] = "form" margin ="10px" >
+
+      <!--Float-->
+         <mat-form-field style ="margin-left: 20px">
+            <input matInput placeholder ="Float Amount R:*">
+           <!--<mat-hint>Enter First Name</mat-hint>-->
+            <mat-error>This Field is required</mat-error>
+        </mat-form-field>
+        <!--Cash-->
+         <mat-form-field style ="margin-left: 20px">
+            <input matInput placeholder ="Cash in Drawer R:*">
+           <!--<mat-hint>Enter First Name</mat-hint>-->
+            <mat-error>This Field is required</mat-error>
+        </mat-form-field>
+        <!--Card-->
+        <mat-form-field style ="margin-left: 20px">
+            <input matInput placeholder ="Card Amount R:*">
+            <!-- <mat-hint>Enter Last Name</mat-hint>-->
+            <mat-error>This Field is required</mat-error>
+        </mat-form-field>
+        <!--Voucher-->
+        <mat-form-field style ="margin-left: 20px">
+            <input  matInput placeholder ="Voucher Amount R:*">
+            <!-- <mat-hint></mat-hint>-->
+            <mat-error>This Field is required</mat-error>
+        </mat-form-field>
+
+        <br>
+
+
+
+        <div class = "button" align = "right">
+        <button style= "font-size:15; margin-right: 10px" mat-raised-button color="primary" type = "submit" >Submit Totals</button>
+        </div>
+
+    </form>
+
+
+    </div>
+  </div>
+</div>
+

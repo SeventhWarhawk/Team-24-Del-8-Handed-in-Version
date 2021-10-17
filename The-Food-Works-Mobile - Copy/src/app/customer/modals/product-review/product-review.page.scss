@@ -1,0 +1,33 @@
+ion-item {
+  margin-top: 1em;
+}
+
+form {
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8em;
+  background-color: #1b262c;
+  border-radius: 20px;
+}
+
+ion-button {
+  margin: 2em;
+}
+
+ion-textarea {
+  min-height: 20vh;
+  width: 100%;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('../../../../assets/images/product-review.png');
+  background-position: bottom right;
+  background-size: 140%;
+  background-repeat: no-repeat;
+}

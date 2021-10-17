@@ -1,0 +1,162 @@
+
+<div class="home-container">
+  <app-toolbar></app-toolbar>
+
+  <div class="about-container">
+    <img class="generic-image" src="../../../assets/images/109436679_3384656238211230_2880665881273623023_n.jpg" alt="food-works-intro">
+    <div class="about-wrapper">
+      <div class="text-wrapper">
+        <h1>THE FOOD WORKS</h1>
+        <h2>The Frozen Food Factory Shop</h2>
+        <button mat-stroked-button style="color: #4DB6AC">SHOP NOW</button>
+      </div>
+      <img class="third-image" src="../../../assets/images/106454263_3341030979240423_9130666948718464929_n.jpg" alt="food-works-intro">
+      <div class="image-wrapper">
+        <img src="../../../assets/images/106454263_3341030979240423_9130666948718464929_n.jpg" alt="food-works-intro">
+      </div>
+    </div>
+  </div>
+  <div class="info-container">
+      <div class="info-wrapper">
+        <h3>DELIVERED TO YOUR DOOR</h3>
+        <p>The Food Works offers you a friendly and reliable delivery to your doorstep service, and also offers in-store order collection when nobody is at home. Customers find delight in using our mobile App to place their orders and arrange delivery all in one place. Discover convenience at the tap of a button. All deliveries hold a R30 service fee. </p>
+      </div>
+      <div class="info-wrapper1">
+        <h3>OUR PROMISE OF QUALITY</h3>
+        <p>Only the highest quality ingredients and standards go behind our meal preparation. The Food Works prides itself in having uncompromised attention to detail and food safety, ensuring that we are not just another food brand. We’re committed to your family’s food journey and are here to help if you have any questions or concerns. Give us a call or send us an email to get in touch. We’re online from 8am to 5pm Mon-Fri and Saturdays from 9am to 1pm. Quality food and quality customer service guaranteed!</p>
+      </div>
+      <div class="info-wrapper2">
+        <h3>EASY. HEALTHY. COST EFFECTIVE</h3>
+        <p>A core value at The Food Works is that we care about YOUR convenience. Our meals are perfectly portion-controlled, well-suited for families which helps to limit waste and means you’ll only pay for what you and your family will eat and enjoy. Our meals come in containers that are suitable for the oven and/or microwave, with simple cooking instructions and great complementary dish suggestions for any occasion. </p>
+      </div>
+    </div>
+  <div class="infographic-container">
+    <h1>HOW WE DO IT</h1>
+    <img src="../../../assets/images/The Food Works Wireframing - Frame 5.jpg">
+  </div>
+  <div class="menu-container">
+    <h1>OUR MENU</h1>
+    <div class="menu-wrapper">
+      <mat-tab-group mat-align-tabs="center">
+        <mat-tab label="All">
+          <div class="products-container">
+            <div class="products">
+              <mat-grid-list cols="4" rowHeight="0.8:1">
+                <mat-grid-tile *ngFor="let item of allProducts" >
+                  <mat-card class="example-card">
+                    <img mat-card-image [src]="item.productImage">
+                    <mat-card-content>
+                      <h3>{{item.productName}}</h3>
+                      <p>{{item.productDescription}}</p>
+                    </mat-card-content>
+                  </mat-card>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Mains">
+          <div class="products-container">
+            <div class="products">
+              <mat-grid-list cols="4" rowHeight="0.8:1">
+                <mat-grid-tile *ngFor="let item of mainProducts" >
+                  <mat-card class="example-card">
+                    <img mat-card-image [src]="item.productImage">
+                    <mat-card-content>
+                      <h3>{{item.productName}}</h3>
+                      <p>{{item.productDescription}}</p>
+                    </mat-card-content>
+                  </mat-card>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Sides">
+          <div class="products-container">
+            <div class="products">
+              <mat-grid-list cols="4" rowHeight="0.8:1">
+                <mat-grid-tile *ngFor="let item of sideProducts" >
+                  <mat-card class="example-card">
+                    <img mat-card-image [src]="item.productImage">
+                    <mat-card-content>
+                      <h3>{{item.productName}}</h3>
+                      <p>{{item.productDescription}}</p>
+                    </mat-card-content>
+                  </mat-card>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Desserts">
+          <div class="products-container">
+            <div class="products">
+              <mat-grid-list cols="4" rowHeight="0.8:1">
+                <mat-grid-tile *ngFor="let item of dessertProducts" >
+                  <mat-card class="example-card">
+                    <img mat-card-image [src]="item.productImage">
+                    <mat-card-content>
+                      <h3>{{item.productName}}</h3>
+                      <p>{{item.productDescription}}</p>
+                    </mat-card-content>
+                  </mat-card>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Packages">
+          <div class="products-container">
+            <div class="products">
+              <mat-grid-list cols="4" rowHeight="0.8:1">
+                <mat-grid-tile *ngFor="let item of packageProducts" >
+                  <mat-card class="example-card">
+                    <img mat-card-image [src]="item.productImage">
+                    <mat-card-content>
+                      <h3>{{item.productName}}</h3>
+                      <p>{{item.productDescription}}</p>
+                    </mat-card-content>
+                  </mat-card>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+  <div class="call-to-action">
+    <h1>GET THE FOOD WORKS APP</h1>
+    <h3>Order anywhere. Any time. Any Day.</h3>
+    <img src="../../../assets/images/app-image.svg" alt="app-image">
+  </div>
+  <div class="footer">
+    <div class="footer-child">
+      <h3>Find Us - Factory Shop</h3>
+      <h5>
+        Shop 17 Simarlo <br>
+        Rainbow Business Park <br>
+        118 Jakaranda Street <br>
+        0157 Centurion <br>
+        South Africa
+      </h5>
+    </div>
+    <div class="footer-child">
+      <h3>Contact</h3>
+      <h5>
+        Lohan Schoeman <br>
+        orders@thefoodworks.co.za <br>
+        +27 60 942 6629
+      </h5>
+    </div>
+    <div class="footer-child">
+      <h3>Follow Us - Social Media</h3>
+      <div class="icon-container">
+        <a href="https://www.facebook.com/thefoodworkssa/" target="_blank"><fa-icon [icon]="faFacebook"></fa-icon></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+

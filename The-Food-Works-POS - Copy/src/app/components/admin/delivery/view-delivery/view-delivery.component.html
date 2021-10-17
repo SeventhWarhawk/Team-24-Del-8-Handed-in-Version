@@ -1,0 +1,59 @@
+<div class="parent-container">
+  <div class="heading-wrapper">
+    <h1>View Deliveries</h1>
+  </div>
+  <div class="controls-wrapper">
+    <mat-form-field>
+      <mat-label>Search Deliveries</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Delivery ID or Sale ID" #input>
+    </mat-form-field>
+    <span class="spacer"></span>
+    <mat-icon class="table-helper" matTooltipClass="table-helper-tooltip"
+      matTooltip="Click on table headings to sort data" matTooltipPosition="left">help_outline</mat-icon>
+  </div>
+  <div class="table-wrapper">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="Delivery_ID">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Delivery ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.deliveryID}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Sale_ID">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Sale ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.saleID}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Customer">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer </th>
+        <td mat-cell *matCellDef="let element"> {{element.customerFullName}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="Address">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+        <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+      </ng-container>
+
+      <!-- View Button Column -->
+      <ng-container matColumnDef="View">
+        <th mat-header-cell *matHeaderCellDef> View </th>
+        <td mat-cell *matCellDef="let element" class="w-100" (click)="openDialog(element.deliveryID)"><mat-icon class="view-table-button">view_list</mat-icon></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10]" showFirstLastButtons class="mat-elevation-z8"></mat-paginator>
+    <mat-progress-bar [mode]="loadingMode" value="100"></mat-progress-bar>
+  </div>
+</div>

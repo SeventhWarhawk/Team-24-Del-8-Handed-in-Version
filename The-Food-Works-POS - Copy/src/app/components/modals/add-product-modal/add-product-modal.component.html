@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Add Product</h1>
+<div mat-dialog-content>Please select the product you would like to add, as well as its quantity on hand.</div>
+<br>
+<form [formGroup]="addProductForm" *ngIf="addProductForm">
+
+  <!-- Form Field for Autocomplete Product Selection-->
+  <mat-form-field>
+    <mat-label>Product</mat-label>
+    <input matInput type="text" [matAutocomplete]="auto" formControlName="product" (blur)="checkProduct()"/>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="productClick($event)">
+      <mat-option *ngFor="let item of filteredProducts" [value]="item">
+        {{ item }}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error>Please select a product</mat-error>
+  </mat-form-field>
+  <br>
+  <br>
+  <!-- Form Field for Quantity on Hand Selection -->
+  <mat-form-field>
+    <mat-label>Quantity</mat-label>
+    <input matInput type="number" min="0" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57" formControlName="quantity"/>
+    <mat-error>Please enter a quantity</mat-error>
+  </mat-form-field>
+
+</form>
+<br>
+<div mat-dialog-actions>
+  <button mat-stroked-button mat-dialog-close>Close</button>
+  <button mat-stroked-button color="primary" [disabled]="!addProductForm.valid" (click)="getProductByName()">Add</button>
+</div>

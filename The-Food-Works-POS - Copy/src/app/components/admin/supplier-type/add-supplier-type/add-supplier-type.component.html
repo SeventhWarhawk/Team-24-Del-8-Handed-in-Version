@@ -1,0 +1,23 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h3>Add Supplier Type</h3>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="addSupplierTypeForm">
+            <div class="row justify-content-center">
+                <div class="col-md-8 keyword">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name">
+                        <mat-hint>Please enter the type name above</mat-hint>
+                    </mat-form-field>
+                    <br>
+                    <div mat-dialog-actions align="end">
+                      <button mat-raised-button [disabled]="!addSupplierTypeForm.valid" (click)="openModal()">Add</button>
+                      <button mat-stroked-button style="margin-right: 10px" (click)="onCancel()" color="primary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

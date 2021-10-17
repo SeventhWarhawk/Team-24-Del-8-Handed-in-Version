@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>View Order</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" color="primary"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="spinner-container" *ngIf="!order">
+    <ion-spinner color="primary"></ion-spinner>
+  </div>
+  <ng-container *ngIf="order">
+    <div class="order-content-container">
+      <div class="order-header-wrapper">
+        <h6>Order Number:</h6>
+        <h3 class="order-number">{{ order.orderID }}</h3>
+        <h6 class="order-details">Completion Method: {{ order.completionMethod }}</h6>
+        <h6 class="order-details">Payment Type: {{ order.paymentMethod }}</h6>
+        <h6 class="order-details">Branch: {{ order.branch }}</h6>
+      </div>
+      <div class="order-content-wrapper">
+        <div class="order-list-wrapper">
+          <ion-list lines="full">
+            <ion-item *ngFor="let item of order.orderLines" detail="true" (click)="presentReviewModal(item.productID)" [disabled]="!canReview">
+              <ion-label>
+                <h2>{{ item.productName }}</h2>
+                <p>{{ item.quantity }}</p>
+                <h3>{{ item.productPrice | currency:'R ' }}</h3>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+        <div class="total-info-container">
+          <div class="total-info-wrapper">
+            <h6>VAT: {{ vatAmount | currency:'R ' }}</h6>
+            <h6>|</h6>
+            <h6>Total (incl. VAT): {{ orderTotal | currency:'R ' }}</h6>
+          </div>
+        </div>
+      </div>
+      <div class="button-container">
+        <ion-button type="submit" color="success" (click)="presentQRModal(order.orderID)" [disabled]="!canViewQR">View QR Code</ion-button>
+      </div>
+    </div>
+  </ng-container>
+</ion-content>

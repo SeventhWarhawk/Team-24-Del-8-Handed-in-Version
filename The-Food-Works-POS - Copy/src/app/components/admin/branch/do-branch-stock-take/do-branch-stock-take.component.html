@@ -1,0 +1,123 @@
+<div class="parent-container">
+  <div class="admin-form-container">
+    <div class="form-heading-wrapper">
+      <mat-card class="title-card">
+        <h1>Do Branch Stock Take</h1>
+      </mat-card>
+    </div>
+    <div class="form-content-wrapper">
+      <mat-horizontal-stepper linear #stepper class="request-branch-stock-stepper">
+        <mat-step [stepControl]="stockForm" [editable]="isEditable">
+          <form [formGroup]="stockForm" *ngIf="stockForm">
+            <ng-template matStepLabel>Set Counted Quantities</ng-template>
+            <div class="stepper-content-container">
+              <mat-icon *ngIf="hasStock" class="table-helper" matTooltipClass="table-helper-tooltip"
+                matTooltip="Enter the physically counted quantities of the corresponding inventory within the blank fields."
+                matTooltipPosition="left" style="margin-left: 1.5%; margin-top: 2%;">help_outline</mat-icon>
+              <h1 *ngIf="hasStock"><strong><span class="data-text">Enter Counted Quantities</span></strong></h1>
+              <h1 *ngIf="!hasStock"><strong><span class="data-text">No products on hand, Add products using the plus icon below</span></strong></h1>
+
+              <mat-card formArrayName="quantities" *ngFor="let quantity of getQuantityControls(); let i = index;" class="enter-quantity-card">
+                <mat-grid-list cols="5" rowHeight="7:1">
+                  <mat-icon class="remove-product-icon" *ngIf="product[i].CanDelete"
+                    matTooltipClass="table-helper-tooltip"
+                    matTooltip="Click here to remove the newly added product from the list."
+                    matTooltipPosition="right"
+                    (click)="removeProduct(i, product[i].ProductId)">
+                    clear
+                  </mat-icon>
+
+                  <!-- Product Id Tile-->
+                  <mat-grid-tile>
+                    <div class="data-wrapper">
+                      <h3>Product ID: <span class="data-text"><strong>{{product[i].ProductId}}</strong></span></h3>
+                    </div>
+                  </mat-grid-tile>
+
+                  <!-- Product Type Tile -->
+                  <mat-grid-tile>
+                    <div class="data-wrapper">
+                      <h3>Product Type: <span class="data-text"><strong>{{product[i].ProductTypeName}}</strong></span>
+                      </h3>
+                    </div>
+                  </mat-grid-tile>
+
+                  <!-- Product Name Tile-->
+                  <mat-grid-tile>
+                    <div class="data-wrapper">
+                      <h3>Product Name: <span class="data-text"><strong>{{product[i].ProductName}}</strong></span></h3>
+                    </div>
+                  </mat-grid-tile>
+
+                  <!-- Quantity On Hand Tile-->
+                  <mat-grid-tile>
+                    <div class="data-wrapper">
+                      <h3>Quantity on Hand: <span
+                          class="data-text"><strong>{{product[i].QuantityOnHand}}</strong></span>
+                      </h3>
+                    </div>
+                  </mat-grid-tile>
+
+                  <!-- Quantity Selected Tile (Using Form Array) -->
+                  <mat-grid-tile>
+                    <mat-form-field>
+                      <input matInput [formControlName]="i" min="0"
+                        onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                        (input)="onChange($event, product[i].ProductId)">
+                    </mat-form-field>
+                  </mat-grid-tile>
+
+                </mat-grid-list>
+              </mat-card>
+              <mat-icon class="table-helper" matTooltipClass="table-helper-tooltip"
+                matTooltip="Have inventory that is not displayed above? Simply add them by clicking on the plus.&#13; Be sure to select the inventory to be added, as well as its quantity on hand."
+                matTooltipPosition="left" style="margin-left: 1.5%">help_outline</mat-icon>
+              <mat-icon class="add-product-icon" (click)="openDialog()">add</mat-icon>
+            </div>
+            <button mat-stroked-button color="primary" routerLink="/admin-home/admin-dashboard">Return</button>
+            <button mat-stroked-button matStepperNext color="primary" [disabled]="!stockForm.valid">Next</button>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="stockForm" [editable]="isEditable">
+          <ng-template matStepLabel>Confirm Discrepancies</ng-template>
+          <div class="confirm-reconciliation-container">
+            <div class="discrepancy-wrapper" *ngFor="let item of product; let i = index">
+              <mat-card id="item-{{i}}">
+                <div class="item-header">
+                  <h1>{{item.ProductName}}</h1>
+                </div>
+                <div class="break"></div>
+                <div class="item">
+                  <h2>Quantity On Hand: <b>{{item.QuantityOnHand}}</b></h2>
+                </div>
+                <div class="item" style="margin-left: -3%">
+                  <h2>Quantity Entered: <b>{{item.EnteredQuantity}}</b></h2>
+                </div>
+                <div class="item">
+                  <h2>Adjustment: <b>{{item.EnteredQuantity - item.QuantityOnHand}}</b></h2>
+                </div>
+              </mat-card>
+              <button mat-stroked-button id="{{item.ProductId}}"
+                [ngStyle]="{'color' : item.Confirmed ? '#4DB6AC' : 'black'}"
+                (click)="confirmDiscrepancy(item.ProductId, item.Confirmed)">Acknowledge</button>
+            </div>
+          </div>
+          <button mat-stroked-button matStepperPrevious color="primary">Back</button><button mat-stroked-button  color="primary" (click)="updateQuantities(stepper)" [disabled]="!enabled">Confirm</button>
+        </mat-step>
+        <mat-step [stepControl]="stockForm" [editable]="true">
+          <ng-template matStepLabel>Stock Take Finalization</ng-template>
+          <div class="confirm-container">
+            <h1 class="confirm-reconciliation-label"><span class="data-text"><strong>Branch Stock Take Completed</strong></span></h1>
+            <mat-list>
+              <mat-list-item> Branch ID: <span class="data-text-list">{{branchId}}</span></mat-list-item>
+              <mat-list-item> Completion Date and Time: <span class="data-text-list">{{currentDate}}</span></mat-list-item>
+              <mat-list-item> Note: <span class="data-text-list">It is now advisable that you send out a branch stock request if needed.</span></mat-list-item>
+            </mat-list>
+            <button mat-stroked-button color="primary" (click)="goHome()">Return</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+    <mat-progress-bar [mode]="loadingMode" value="100"></mat-progress-bar>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+// Google Fonts Import
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+
+// Bootstrap Import
+
+// Desktop Styling
+.main-toolbar {
+  background-color: white;
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  z-index: 10000;
+  height: 80px;
+}
+
+.title-container {
+  img {
+    height: 60px;
+    width: 100px;
+    margin-bottom: 6px;
+  }
+  width: 33.33%;
+  margin-left: 2%;
+}
+
+.navigation-container {
+  text-align: center;
+  width: 33.33%;
+  .food-works-home {
+    color: #4db6ac;
+    letter-spacing: 1.5px;
+    font-size: 0.8em;
+    margin: 8%;
+    transition: 0.3s;
+    font-weight: 600;
+    &:hover {
+      opacity: 0.5;
+      cursor: pointer;
+    }
+  }
+
+  .food-works-about {
+    color: #4db6ac;
+    letter-spacing: 1.5px;
+    font-size: 0.8em;
+    margin: 8%;
+    transition: 0.3s;
+    font-weight: 600;
+    &:hover {
+      opacity: 0.5;
+      cursor: pointer;
+    }
+  }
+
+  .food-works-menu {
+    color: #4db6ac;
+    letter-spacing: 1.5px;
+    font-size: 0.8em;
+    margin: 8%;
+    transition: 0.3s;
+    font-weight: 600;
+    &:hover {
+      opacity: 0.5;
+      cursor: pointer;
+    }
+  }
+
+  .food-works-contact {
+    color: #4db6ac;
+    letter-spacing: 1.5px;
+    font-size: 0.8em;
+    margin: 8%;
+    transition: 0.3s;
+    font-weight: 600;
+    &:hover {
+      opacity: 0.5;
+      cursor: pointer;
+    }
+  }
+}
+
+.icon-container {
+  width: 33.33%;
+  fa-icon {
+    color: #4db6ac;
+    transition: 0.3s;
+    &:hover {
+      opacity: 0.5;
+      cursor: pointer;
+    }
+    font-size: 1.3em;
+    float: right;
+  }
+  margin-right: 2%;
+}
+

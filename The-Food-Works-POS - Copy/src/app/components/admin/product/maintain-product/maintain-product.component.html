@@ -1,0 +1,121 @@
+<div class="parent-container">
+  <div class="heading-wrapper">
+    <h1>Maintain Product</h1>
+  </div>
+  <div class="controls-wrapper">
+    <mat-form-field>
+      <mat-label>Enter Search Criteria</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Winter Package" #input>
+    </mat-form-field>
+    <mat-form-field class="control">
+      <mat-label>Choose a Product Type</mat-label>
+      <mat-select [ngModel]="selectedOption" (ngModelChange)="getProducts($event)">
+        <mat-option *ngFor="let item of typesData" [value]="item.ProductTypeId">
+          {{item.ProductTypeName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <span class="spacer"></span>
+    <mat-icon class="table-helper" matTooltipClass="table-helper-tooltip"
+      matTooltip="Click on table headings to sort data" matTooltipPosition="left">help_outline</mat-icon>
+  </div>
+  <div class="table-wrapper">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" multiTemplateDataRows>
+
+      <!-- Barcode -->
+      <ng-container matColumnDef="productBarcode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Code </th>
+        <td mat-cell *matCellDef="let product"><span *ngIf="product.ProductBarcode!=null;else none">
+            {{product.ProductBarcode}} </span> </td>
+      </ng-container>
+      <ng-template #none>N/A</ng-template>
+
+      <!-- Product Name Column -->
+      <ng-container matColumnDef="productName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name</th>
+        <td mat-cell *matCellDef="let product"> {{product.ProductName}} </td>
+      </ng-container>
+
+      <!-- Description -->
+      <ng-container matColumnDef="productDescription">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+        <td mat-cell *matCellDef="let product"> {{product.ProductDescription}} </td>
+      </ng-container>
+
+      <!-- Type -->
+      <ng-container matColumnDef="productType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Type </th>
+        <td mat-cell *matCellDef="let product"> {{product.ProductTypeName}} </td>
+      </ng-container>
+
+      <!-- Image -->
+      <ng-container matColumnDef="productImage">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Image</th>
+        <td mat-cell *matCellDef="let product">
+          <div class="image-wrapper" style="background-image: url('{{product.ProductImage}}');" *ngIf="product.ProductImage!=null; else other"></div>
+        </td>
+      </ng-container>
+      <ng-template #other>N/A</ng-template>
+
+      <!-- Contents -->
+      <ng-container matColumnDef="inventoryProduct">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Contents</th>
+        <td mat-cell *matCellDef="let product">
+          <span class="highlight">Click to view contents</span>
+        </td>
+      </ng-container>
+      <ng-template #nothing>N/A</ng-template>
+
+      <!-- Update Button Column -->
+      <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef> Update </th>
+        <td mat-cell *matCellDef="let product">
+          <mat-icon class="update-table-button" (click)="getOneProduct(product.ProductName)">edit</mat-icon>
+        </td>
+      </ng-container>
+      <!-- Delete Column -->
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon class="update-table-button" (click)="deleteProduct(element.ProductId)">delete
+          </mat-icon>
+        </td>
+      </ng-container>
+
+      <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let product" [attr.colspan]="displayedColumns.length">
+          <div class="example-element-detail" [@detailExpand]="product == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="example-element-diagram">
+              <span *ngIf="product.contents!=null;else nothing">
+                <mat-list role="list">
+                  <div mat-subheader>Contents</div>
+                  <mat-list-item *ngFor="let child of product.contents" role="listitem">
+                    <mat-icon mat-list-icon color="primary">arrow_right</mat-icon>
+                    <div mat-line>{{child.ProductName}} x{{child.Quantity}}</div>
+                  </mat-list-item>
+                </mat-list>
+              </span>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"
+        [class.example-expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No product matching the filter "{{input.value}}" was found</td>
+      </tr>
+    </table>
+
+    <mat-paginator [length]="100" [pageSize]="5" [pageSizeOptions]="[5, 10]" showFirstLastButtons
+      class="mat-elevation-z8"></mat-paginator>
+    <mat-progress-bar [mode]="loadingMode" value="100"></mat-progress-bar>
+  </div>
+</div>

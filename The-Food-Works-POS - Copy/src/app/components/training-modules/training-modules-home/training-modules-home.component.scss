@@ -1,0 +1,183 @@
+@import '~src/styles.scss';
+
+// Home page styles
+.home-page-container {
+  height: 100vh;
+}
+
+// Toolbar
+mat-toolbar {
+  .application-name-text {
+    color: $text-color;
+    font-size: 1.7em;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      transition: 0.5s;
+      opacity: 0.6;
+    }
+  }
+
+  .home-toolbar-spacer {
+    flex: 1 1 auto;
+  }
+
+  .profile-icon {
+    color: $text-color;
+  }
+
+  img {
+    width: 2.3%;
+  }
+
+  button {
+    color: $text-color;
+  }
+}
+
+//Training Modules Page
+.training-modules-container {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+
+  .training-modules-content {
+    background-color: #f3f9fb;
+    margin-top: 2%;
+    width: 90vw;
+    height: 85vh;
+    box-shadow: $shadow;
+    border-bottom: 5px solid transparent;
+    border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
+    border-image-slice: 1;
+    overflow-x: hidden;
+  }
+}
+
+.drawer-options {
+  text-align: left;
+  width: 100%;
+  margin-top: 10%;
+  border-radius: 0%;
+
+  &:hover {
+    transition: 0.5s;
+    background-color: rgba(77, 182, 172, .4);
+    color: white;
+  }
+}
+
+mat-expansion-panel {
+  &:hover {
+    mat-panel-title {
+      transition: 0.5s;
+      color: #4DB6AC;
+    }
+  }
+}
+
+mat-drawer-content {
+  overflow: hidden;
+  display: flex;
+  flex-grow: 1;
+
+  .training-module-footer {
+    display: flex;
+    flex-grow: 1;
+    justify-content: left;
+    align-items: center;
+    background-color: #4DB6AC;
+    width: 90vw;
+    height: 5vh;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .training-module-content-page {
+    display: flex;
+  }
+}
+
+.training-module-menu-button {
+  cursor: pointer;
+  color: white;
+  font-size: 2em;
+  &:hover {
+    transition: 0.5s;
+    opacity: 0.6;
+  }
+  margin-left: 1%;
+  margin-bottom: 0.3%;
+}
+
+.training-module-home-button {
+  position: absolute;
+  cursor: pointer;
+  color: white;
+  font-size: 2em;
+  &:hover {
+    transition: 0.5s;
+    opacity: 0.6;
+  }
+  right: 1%;
+  margin-bottom: 0.3%;
+}
+
+.training-module-home-button-side {
+  position: absolute;
+  cursor: pointer;
+  color: #4DB6AC;
+  font-size: 2em;
+  &:hover {
+    transition: 0.5s;
+    opacity: 0.6;
+  }
+  left: 9%;
+  bottom: 2%;
+}
+
+.completed-module-title {
+  opacity: 0.3;
+}
+
+.incompleted-module-text {
+  display: none;
+}
+
+.completed-module-text {
+  color:rgba(77, 182, 172);
+}
+
+mat-drawer h2 {
+  margin: 5%;
+  margin-left: 9%;
+  color:#4DB6AC
+}
+
+.mat-drawer-inner-container {
+  width: 500px;
+}
+
+// Loading Bar Styles
+:host ::ng-deep .mat-progress-bar-fill::after {
+  background: #4DB6AC !important;
+}
+
+.loading-div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(243, 249, 251, 0.3);
+  .return-home {
+    margin-top: 5%;
+  }
+}
+
+
+
+

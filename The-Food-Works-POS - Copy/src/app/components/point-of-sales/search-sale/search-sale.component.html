@@ -1,0 +1,58 @@
+<div class="center-container">
+  <app-admin-navigation></app-admin-navigation>
+
+  <span class="page-title">Search Sale</span>
+  <div class="table-container">
+
+
+    <div class="table-wrapper">
+
+      <mat-form-field>
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. 14/04/2021" #input>
+      </mat-form-field>
+      <mat-icon class="table-helper" matTooltipClass="table-helper-tooltip"
+        matTooltip="Click on table headings to sort data" matTooltipPosition="left">help_outline</mat-icon>
+
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+        <ng-container matColumnDef="saleID">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Sale ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.SaleID}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dateOfSale">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Date of Sale </th>
+          <td mat-cell *matCellDef="let element"> {{element.SaleDate | date: 'dd/MM/y'}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="saleTotal">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Sale Total</th>
+          <td mat-cell *matCellDef="let element"> {{element.saleTotal}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="view">
+          <th mat-header-cell *matHeaderCellDef> View </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-icon class="update-table-button" routerLink="/admin/maintain-employee/view-employee">assignment_ind
+            </mat-icon>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+
+      <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10]" showFirstLastButtons
+        class="mat-elevation-z8"></mat-paginator>
+
+    </div>
+  </div>
+</div>

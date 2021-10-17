@@ -1,0 +1,136 @@
+<div class="modal-content">
+  <div class="modal-body">
+    <div class="form-heading-wrapper" style="margin: 1.5%; margin-left: 0.5%; margin-bottom: 5%">
+      <mat-card class="title-card">
+        <h1>Update Product</h1>
+      </mat-card>
+    </div>
+      <form [formGroup] = "form">
+        <h2 style="color: #48B6AC; margin-top: 1.5%; margin-left: 1.5%">You can edit the following details for the product:</h2>
+        <!--Type-->
+        <mat-form-field>
+          <mat-label>Choose a Product Type</mat-label>
+          <mat-select [ngModel]="selectedOption" [ngModelOptions]="{standalone: true}" (ngModelChange)="getProducts($event)">
+              <mat-option *ngFor="let item of typesData" [value] = "item.ProductTypeId">
+                {{item.ProductTypeName}}
+              </mat-option>
+          </mat-select>
+          <mat-hint>Select the Product's Type above</mat-hint>
+          <mat-error>Please select a type</mat-error>
+        </mat-form-field>
+
+        <!--Status-->
+        <mat-form-field>
+          <mat-label>Product Status</mat-label>
+          <mat-select [ngModel]="selectedStatOption" [ngModelOptions]="{standalone: true}" (ngModelChange)="getStatID($event)">
+              <mat-option *ngFor="let item of statusesData" [value] = "item.ProductStatusId">
+                {{item.ProductStatusName}}
+              </mat-option>
+          </mat-select>
+          <mat-hint>Select the new status above</mat-hint>
+          <mat-error>Please select a status</mat-error>
+        </mat-form-field>
+
+        <!--Name-->
+        <mat-form-field>
+          <mat-label>Product Name</mat-label>
+          <input matInput formControlName="ProductName" />
+          <mat-hint>Enter the Product's Name above. Please include the product's size, e.g.: Pork Ribs 100g or Milk 1l</mat-hint>
+          <mat-error>Maximum length of the name is 30 characters</mat-error>
+        </mat-form-field>
+
+        <!--Description-->
+        <mat-form-field class="len">
+          <mat-label>Product Description</mat-label>
+          <input matInput formControlName="ProductDescription"/>
+           <mat-hint>Enter the Product's Description above</mat-hint>
+           <mat-error>Maximum length of the name is 100 characters</mat-error>
+        </mat-form-field>
+
+        <!--Code-->
+        <span [hidden]="isIngredient">
+          <mat-form-field>
+            <mat-label >Product Code</mat-label>
+            <input matInput formControlName="ProductBarcode" />
+            <mat-hint>Enter the Product's Barcode above</mat-hint>
+            <mat-error>Minimum length of the barcode is 6 characters</mat-error>
+          </mat-form-field>
+        </span>
+        <br/>
+
+
+      <span [hidden]="isIngredient">
+        <mat-card>
+          <img *ngIf="ProductImage!=null;else other" style="width:115px; height:110px; margin-top:10px; margin-right:10px" src={{ProductImage}}/> <br/>
+          <button class="image-upload-button" mat-stroked-button (click)="fileUploader.click()" color="primary">Upload Product Image</button>
+          <label for="fileUploader" id="file"></label>
+          <input type="file" accept="image/*" #fileUploader id="fileUploader" (change)="getImageFile($event)" style="display: none;">
+          <input type="hidden" formControlName="ProductImage" />
+          <ng-template #other></ng-template>
+        </mat-card>
+      </span>
+
+      <br/><br/><br/>
+
+      <!--Contents table-->
+      <div [hidden]="isIngredient" class="table-container-product">
+
+        <h3 class="title-text">Please select the contents to be added/updated:</h3>
+        <mat-icon style="float: right" class="table-helper" matTooltipClass="table-helper-tooltip"
+          matTooltip="Enter the quantity of the item you want to add and click on the 'Add item' button. To remove this item from the product's content, click on the 'Remove item' button. To update the quantity of an item, input the updated quantity and click on the 'Add item' button." matTooltipPosition="left">help_outline</mat-icon>
+
+        <mat-form-field style="margin: 0%">
+          <mat-label>Enter Search Criteria</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Winter Package" #input>
+        </mat-form-field>
+
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+          <!-- Product Name Column -->
+          <ng-container matColumnDef="productName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Content Name</th>
+            <td mat-cell *matCellDef="let product"> {{product.productName}} </td>
+          </ng-container>
+
+          <!-- Quantity *ngIf="conList.ProductId === ProductId && conList.ProductContentId === product.ProductId"-->
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
+            <td mat-cell *matCellDef="let product;let index = index">
+              <mat-form-field>
+                <input matInput [(ngModel)] = "product.quantity" type="number" [value]="product.quantity" [ngModelOptions]="{standalone: true}">
+              </mat-form-field>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="addContent">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let product;let index = index"> <button mat-stroked-button color="primary" (click) = "updateContent(product)">Add/Update item</button></td>
+          </ng-container>
+
+          <ng-container matColumnDef="removeContent">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let product;let index = index"> <button mat-stroked-button color="warn" (click) = "removeContent(product)">Remove item</button></td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No product matching the filter "{{input.value}}" was found</td>
+          </tr>
+        </table>
+
+        <mat-paginator [length]="100" [pageSize]="5" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons
+          class="mat-elevation-z8"></mat-paginator>
+      </div>
+
+      <br/><br/>
+
+        <div class="button-row" mat-dialog-actions align="start" style="margin: 1.5%">
+          <button style= "font-size:15px; margin-right: 25px; width: 10%" mat-stroked-button color="primary" [disabled]="!form.valid" (click)="openDialog()">Update</button>
+          <button style= "font-size:15px; margin-right: 30px; width: 10%" mat-stroked-button (click)="onCancel()">Cancel</button>
+        </div>
+      </form>
+    </div>
+

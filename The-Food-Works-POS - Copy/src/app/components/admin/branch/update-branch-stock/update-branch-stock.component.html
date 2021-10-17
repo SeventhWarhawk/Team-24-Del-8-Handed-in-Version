@@ -1,0 +1,30 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h3>Update Branch Product</h3>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="form" class="login-content-wrapper">
+            <mat-form-field appearance="legacy">
+                <mat-label>Product ID</mat-label>
+                <input matInput formControlName="ProductId">
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="legacy">
+                <mat-label>Baseline Quantity</mat-label>
+                <input matInput formControlName="BaselineQuantity">
+                <mat-error style="color:red;">Baseline cannot be negative!</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="legacy" *ngIf="!ingredient">
+                <mat-label>Product Price</mat-label>
+                <input matInput formControlName="ProductPrice">
+                <mat-error style="color:red;">Price cannot be negative!</mat-error>
+            </mat-form-field>
+            <br>
+            <button mat-raised-button (click)="openModal()" [disabled]="!form.valid">Update</button>
+            <button mat-stroked-button style="margin-right: 10px" (click)="onCancel()" color="primary">Return</button>
+        </form>
+    </div>
+    <br><br>
+
+</div>

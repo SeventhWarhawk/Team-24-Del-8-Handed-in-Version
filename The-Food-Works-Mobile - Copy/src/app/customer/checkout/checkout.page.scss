@@ -1,0 +1,98 @@
+form {
+  margin-top: 1em;
+}
+
+ion-button {
+  margin-top: 1.5em;
+}
+
+a {
+  margin: 1em;
+}
+
+.checkout-content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkout-content-wrapper {
+  height: 55vh;
+  width: 90vw;
+  border: 2px dashed #71c9ce;
+  border-radius: 20px;
+  padding: 0.5em;
+
+}
+
+.checkout-list-wrapper {
+  min-height: 38vh;
+  max-height: 38vh;
+  overflow: auto;
+}
+
+.total-info-container {
+  background-color: #71c9ce;
+  border-radius: 20px;
+  color: white;
+  margin-top: 1em;
+}
+
+.total-info-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  h6 {
+    font-size: 0.9em;
+  }
+}
+
+.checkout-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.voucher-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 4vh;
+  width: 100%;
+  text-align: center;
+
+  ion-icon {
+    font-size: 2em;
+    margin-right: 3%;
+    margin-top: 1.2%;
+  }
+
+  span {
+    color: #71c9ce;
+  }
+}
+
+.disabled-voucher {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.voucher-message {
+  font-size: 0.8em;
+  text-align: center;
+  width: 90%;
+  margin-top: -3%;
+  color: #71c9ce;
+}
+
+.voucher-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  p {
+    margin-top: -4%;
+  }
+}
+

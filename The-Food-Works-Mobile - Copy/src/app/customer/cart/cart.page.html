@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cart</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="clearCartAlert()" [disabled]="!isCartItems">Clear</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="rewards-banner" [routerLink]="['/rewards-center']" routerDirection="forward">
+    <h4>Rewards Center</h4>
+  </div>
+  <div class="cart-items-container">
+    <ion-list id="data" lines="none">
+      <ion-item *ngIf="!isCartItems">
+        <ion-thumbnail slot="start">
+          <img src="../../assets/images/no-product.svg">
+        </ion-thumbnail>
+        <ion-label>
+          <h3>Your Cart is Empty</h3>
+          <p>Please add items to your cart.</p>
+        </ion-label>
+        <ion-fab vertical="center" horizontal="end">
+          <ion-fab-button size="small" color="primary" [routerLink]="['/tabs']" routerDirection="forward">
+            <ion-icon name="add-outline" size="small"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+      </ion-item>
+      <ion-item *ngFor="let item of cartItems">
+        <ion-thumbnail slot="start">
+          <ng-container *ngIf="item.productImage !== null; else elseTemplate">
+            <ion-img [src]="item.productImage"></ion-img>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <ion-img [src]="'../../assets/images/the-food-works-logo.png'"></ion-img>
+          </ng-template>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>{{ item.productName }}</h3>
+          <p>{{ item.productPrice | currency:'R ' }}</p>
+          <p>Quantity: {{ item.quantity }}</p>
+        </ion-label>
+        <ion-fab vertical="center" horizontal="end">
+          <ion-fab-button size="small" color="danger" (click)="presentDeleteItemAlert(item.productID)">
+            <ion-icon name="trash-outline" size="small"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-progress-bar type="indeterminate" *ngIf="isProgress"></ion-progress-bar>
+  <ion-toolbar>
+    <div class="checkout-container">
+      <h6>Cart Total: <br> <span class="cart-total-amount">{{ cartTotal | currency:'R ' }}</span></h6>
+      <ion-button color="success" [routerLink]="['/checkout']" routerDirection="forward" [disabled]="!isCartItems">Proceed to Checkout</ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

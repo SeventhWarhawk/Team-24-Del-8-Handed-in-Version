@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Register User</h2>
+<form [formGroup]="form" (ngSubmit)="Register()">
+    <mat-dialog-content class="mat-typography">
+        <div class="controls">
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input type="text" matInput placeholder="Name" formControlName="Name">
+                <mat-hint>Your name</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Surname</mat-label>
+                <input type="text" matInput placeholder="Surname" formControlName="Surname">
+                <mat-hint>Your surname</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Date of Birth</mat-label>
+                <input type="datetime" matInput placeholder="DOB" formControlName="DOB">
+                <mat-hint>Your birthday</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Telephone</mat-label>
+                <input type="text" matInput placeholder="Tel" formControlName="Tel">
+                <mat-hint>Your telephone</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Email Address</mat-label>
+                <input type="email" matInput placeholder="Email Address" formControlName="EmailAddress">
+                <mat-hint>Your email address</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput placeholder="Password" formControlName="Password">
+                <mat-hint>Your password</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Would you like to join our Loyalty Program?</mat-label>
+                <input type="text" matInput placeholder="Loyalty" formControlName="Loyalty">
+                <mat-hint>Yes or No</mat-hint>
+            </mat-form-field>
+
+
+
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button type="submit" [disabled]="!form.valid" cdkFocusInitial>Register</button>
+    </mat-dialog-actions>
+</form>

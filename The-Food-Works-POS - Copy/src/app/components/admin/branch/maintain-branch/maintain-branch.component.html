@@ -1,0 +1,72 @@
+<div class="parent-container">
+  <div class="heading-wrapper">
+    <h1>Maintain Branch</h1>
+  </div>
+  <div class="controls-wrapper">
+    <mat-form-field>
+      <mat-label>Search Branch</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search Entire Table" #input>
+    </mat-form-field>
+    <span class="spacer"></span>
+    <mat-icon class="table-helper" matTooltipClass="table-helper-tooltip"
+      matTooltip="Click on table headings to sort data" matTooltipPosition="left">help_outline</mat-icon>
+  </div>
+  <div class="table-wrapper">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="BranchId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let item">{{item.BranchId}}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="BranchName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let item"> {{item.BranchName}} </td>
+      </ng-container>
+
+      <!-- Status Column (True) -->
+      <ng-container matColumnDef="BranchStatus">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <td mat-cell *matCellDef="let item"> <span *ngIf="item.BranchStatus">Active</span><span *ngIf="!item.BranchStatus">Disabled</span> </td>
+      </ng-container>
+
+      <!-- Date and Time Column -->
+      <ng-container matColumnDef="BranchDateCreated">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date and Time Created </th>
+        <td mat-cell *matCellDef="let item"> {{item.BranchDateCreated}} </td>
+      </ng-container>
+
+      <!-- View / Update Button Column -->
+      <ng-container matColumnDef="viewUpdate">
+        <th mat-header-cell *matHeaderCellDef> View / Update </th>
+        <td mat-cell *matCellDef="let item" class="w-100"
+          routerLink='/admin-home/maintain-branch/view-branch/{{item.BranchId}}'>
+          <mat-icon class="view-table-button">view_list</mat-icon>
+        </td>
+      </ng-container>
+
+      <!-- Delete Button Column -->
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let item" (click)="deleteBranch(item.BranchId)">
+          <mat-icon class="view-table-button">delete</mat-icon>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10]" showFirstLastButtons
+      class="mat-elevation-z8"></mat-paginator>
+    <mat-progress-bar [mode]="loadingMode" value="100"></mat-progress-bar>
+  </div>
+</div>
+

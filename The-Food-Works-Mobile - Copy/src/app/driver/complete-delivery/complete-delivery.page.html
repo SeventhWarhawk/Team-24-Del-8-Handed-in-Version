@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Complete Delivery</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" color="primary"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="spinner-container" *ngIf="!completeInfo">
+    <ion-spinner color="primary"></ion-spinner>
+  </div>
+  <div class="container" [hidden]="!completeInfo">
+    <ng-container *ngIf="completeInfo">
+      <div class="info-wrapper">
+        <ion-card>
+          <div class="image-container">
+            <ion-img [src]="'../../../assets/images/complete-delivery.svg'"></ion-img>
+            <ion-img class="second-image" [src]="'../../../assets/images/unpack-delivery.svg'"></ion-img>
+          </div>
+          <ion-card-header>
+            <ion-card-subtitle>Customer Order</ion-card-subtitle>
+            <ion-card-title>Sale ID <span class="highlight">{{completeInfo.saleID}}</span></ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="card-content-wrapper">
+              <ion-label>Customer: {{completeInfo.customerFullName}}</ion-label>
+              <ion-label>Contact Number: {{completeInfo.customerTelephone}} </ion-label>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </ng-container>
+    <div class="signature-wrapper" [hidden]="!completeInfo">
+      <div class="signature-container">
+        <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()">
+        </signature-pad>
+      </div>
+      <ion-button color="primary" (click)="clearSignature()" [disabled]="!hasSign" expand="block">Clear</ion-button>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-progress-bar type="indeterminate" *ngIf="isProgress"></ion-progress-bar>
+  <ion-toolbar>
+    <div class="buttons-wrapper">
+      <ion-button color="success" (click)="presentConfirmComplete()" [disabled]="!hasSign || !completeInfo">Complete</ion-button>
+      <ion-button color="danger" (click)="presentConfirmReturn()" [disabled]="hasSign || !completeInfo">Return</ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

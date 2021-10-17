@@ -1,0 +1,21 @@
+.column{
+    width: 500;
+}
+table{
+    margin-top: 100px !important;
+}
+
+// Defaults
+
+mat-progress-bar {
+  width: 75vw;
+}
+
+:host ::ng-deep .mat-progress-bar-fill::after {
+  background: linear-gradient(to left, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%) !important;
+}
+
+// Disable Header Navigation
+::ng-deep .mat-horizontal-stepper-header {
+  pointer-events: none !important;
+}
